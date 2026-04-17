@@ -11,32 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Base segura de acesso SSH',
+    title: 'Preparacao de ambiente com criterio tecnico',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Guias praticos para gerar chaves, configurar servidor Linux com
-        permissoes corretas e aplicar hardening basico no servico SSH.
+        Checklists objetivos para validar servidor, requisitos de rede,
+        OpenSSH, Docker Engine e estrutura minima para operacao.
       </>
     ),
   },
   {
-    title: 'Integracao com Coolify sem lacunas',
+    title: 'Fluxo guiado de configuracao no Coolify',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Processo passo a passo para cadastrar chave no painel, conectar com
-        repositorio Git e validar autenticacao ponta a ponta.
+        Sequencia clara para cadastrar chave privada, vincular servidor,
+        validar host e preparar a implantacao de sistemas.
       </>
     ),
   },
   {
-    title: 'Operacao orientada por runbook',
+    title: 'Documentacao pensada para implantacao real',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Conteudo estruturado para times de plataforma: checklist de preparo,
-        criterios de aceite, troubleshooting e boas praticas de seguranca.
+        Conteudo com deploy, seguranca, troubleshooting e padrao de uso
+        adequado para estudo, laboratorio e ambiente institucional.
       </>
     ),
   },

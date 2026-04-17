@@ -9,30 +9,36 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 const KPIS = [
-  {label: 'Trilha operacional', value: '9 guias'},
-  {label: 'Hardening recomendado', value: 'SSH + acesso'},
-  {label: 'Modelo de uso', value: 'Runbook pronto'},
+  {label: 'Foco', value: 'Implantacao via Coolify'},
+  {label: 'Instituicao', value: 'IFBA Vitoria da Conquista'},
+  {label: 'Autoria', value: 'Breno Tainan Aguiar'},
 ];
 
 const DEPLOY_FLOW = [
   {
     step: '01',
-    title: 'Preparar ambiente',
+    title: 'Preparar servidor',
     description:
-      'Validacao de conectividade, usuarios administrativos e checklist tecnico antes de qualquer mudanca.',
+      'Validacao de rede, acesso administrativo, OpenSSH e requisitos tecnicos antes da publicacao.',
   },
   {
     step: '02',
-    title: 'Configurar SSH com seguranca',
+    title: 'Configurar acesso e Coolify',
     description:
-      'Geracao de chave, permissao correta de .ssh, hardening do sshd e teste de autenticacao com log verboso.',
+      'Cadastro de chave privada, vinculacao ao servidor, validacao do host e instalacao do Docker Engine.',
   },
   {
     step: '03',
-    title: 'Integrar com Coolify',
+    title: 'Implantar sistemas',
     description:
-      'Cadastro da chave no painel, associacao com repositorio Git e validacao completa da autenticacao.',
+      'Deploy com dominio, proxy reverso, healthcheck, boas praticas e troubleshooting operacional.',
   },
+];
+
+const HIGHLIGHTS = [
+  'Passo a passo didatico para equipes tecnicas',
+  'Fluxo completo do servidor ao deploy',
+  'Base pronta para operacao, ensino e documentacao institucional',
 ];
 
 function HomepageHeader() {
@@ -42,28 +48,66 @@ function HomepageHeader() {
       <div className={styles.heroGlowLeft} />
       <div className={styles.heroGlowRight} />
       <div className="container">
-        <p className={styles.kicker}>Playbook tecnico</p>
-        <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
-          {siteConfig.title}
-        </Heading>
-        <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
-          {siteConfig.tagline}
-        </p>
-        <p className={styles.heroDescription}>
-          Padronize acesso SSH, proteja servidores e conecte o Coolify com
-          repositorios Git de forma reproduzivel para equipes de engenharia.
-        </p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/introducao">
-            Iniciar trilha de autenticacao
-          </Link>
-          <Link
-            className="button button--outline button--lg"
-            to="/docs/ssh/geracao-chave">
-            Ir para configuracao SSH
-          </Link>
+        <div className={styles.heroShell}>
+          <div className={styles.heroContent}>
+            <p className={styles.kicker}>IFBA Vitoria da Conquista</p>
+            <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
+              Documentacao moderna para implantacao de sistemas via Coolify
+            </Heading>
+            <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
+              {siteConfig.tagline}
+            </p>
+            <p className={styles.heroDescription}>
+              Material tecnico desenvolvido por Breno Tainan Aguiar para apoiar
+              a preparacao de servidores, configuracao de acesso seguro,
+              validacao de infraestrutura e deploy de sistemas com Coolify.
+            </p>
+            <ul className={styles.highlightList}>
+              {HIGHLIGHTS.map((item) => (
+                <li key={item} className={styles.highlightItem}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className={styles.buttons}>
+              <Link
+                className="button button--secondary button--lg"
+                to="/docs/introducao">
+                Explorar documentacao
+              </Link>
+              <Link
+                className="button button--outline button--lg"
+                to="/docs/coolify/configuracao-ssh">
+                Ver fluxo no Coolify
+              </Link>
+            </div>
+          </div>
+
+          <aside className={styles.heroPanel}>
+            <p className={styles.heroPanelEyebrow}>Resumo do projeto</p>
+            <Heading as="h2" className={styles.heroPanelTitle}>
+              Um guia institucional para operacao e implantacao
+            </Heading>
+            <p className={styles.heroPanelText}>
+              Esta plataforma organiza a documentacao de implantacao de
+              sistemas via Coolify com foco em clareza, seguranca e
+              reprodutibilidade.
+            </p>
+            <div className={styles.heroPanelMeta}>
+              <span className={styles.metaLabel}>Autor</span>
+              <span className={styles.metaValue}>Breno Tainan Aguiar</span>
+            </div>
+            <div className={styles.heroPanelMeta}>
+              <span className={styles.metaLabel}>Campus</span>
+              <span className={styles.metaValue}>IFBA Vitoria da Conquista</span>
+            </div>
+            <div className={styles.heroPanelMeta}>
+              <span className={styles.metaLabel}>Escopo</span>
+              <span className={styles.metaValue}>
+                SSH, Coolify, deploy, seguranca e troubleshooting
+              </span>
+            </div>
+          </aside>
         </div>
 
         <div className={styles.kpiGrid}>
@@ -84,7 +128,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`Documentacao | ${siteConfig.title}`}
-      description="Guias tecnicos para autenticacao SSH, seguranca de acesso e integracao Coolify com repositorios Git.">
+      description="Documentacao para implantacao de sistemas via Coolify, com foco em SSH, validacao de servidor, deploy e operacao segura.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
@@ -94,7 +138,7 @@ export default function Home(): ReactNode {
             <div className={styles.sectionHeader}>
               <p className={styles.sectionEyebrow}>Fluxo recomendado</p>
               <Heading as="h2" className={styles.sectionTitle}>
-                Da autenticacao ao acesso validado em 3 etapas
+                Do provisionamento ao deploy em 3 movimentos
               </Heading>
             </div>
 
@@ -118,7 +162,8 @@ export default function Home(): ReactNode {
               <div>
                 <p className={styles.sectionEyebrow}>Pronto para executar</p>
                 <Heading as="h2" className={styles.ctaTitle}>
-                  Use o runbook e reduza falhas de autenticacao em operacao
+                  Use esta base para implantar sistemas via Coolify com mais
+                  previsibilidade
                 </Heading>
               </div>
               <div className={styles.ctaButtons}>
@@ -129,8 +174,8 @@ export default function Home(): ReactNode {
                 </Link>
                 <Link
                   className="button button--secondary button--lg"
-                  to="/docs/coolify/configuracao-ssh">
-                  Ir para integracao Coolify
+                  to="/docs/coolify/validacao-acesso">
+                  Ir para validacao no Coolify
                 </Link>
               </div>
             </div>

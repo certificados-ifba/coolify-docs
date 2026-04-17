@@ -5,7 +5,6 @@
 
 .heroBanner {
   padding: 6rem 0 5rem;
-  text-align: center;
   position: relative;
   overflow: hidden;
   background:
@@ -63,31 +62,124 @@
   font-weight: 700;
 }
 
+.heroShell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.86fr);
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.heroContent {
+  text-align: left;
+}
+
 .heroTitle {
   font-size: clamp(2.3rem, 5.5vw, 4.3rem);
   letter-spacing: -0.02em;
+  max-width: 11ch;
 }
 
 .heroSubtitle {
   font-size: clamp(1.05rem, 2.5vw, 1.45rem);
-  margin: 0 auto;
-  max-width: 700px;
+  margin: 0;
+  max-width: 680px;
   color: rgba(255, 255, 255, 0.92);
 }
 
 .heroDescription {
   max-width: 760px;
-  margin: 1rem auto 2rem;
+  margin: 1rem 0 1.3rem;
   color: rgba(255, 255, 255, 0.78);
   line-height: 1.6;
+}
+
+.highlightList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.8rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: rgba(248, 250, 252, 0.88);
+}
+
+.highlightItem::before {
+  content: '';
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b 0%, #2dd4bf 100%);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06);
+  flex: 0 0 auto;
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.85rem;
   flex-wrap: wrap;
+}
+
+.heroPanel {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  padding: 1.4rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  box-shadow: 0 24px 60px rgba(4, 10, 23, 0.28);
+  backdrop-filter: blur(10px);
+  text-align: left;
+}
+
+.heroPanelEyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.78);
+  font-weight: 700;
+}
+
+.heroPanelTitle {
+  margin: 0.6rem 0 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+  color: #fff7ed;
+}
+
+.heroPanelText {
+  margin: 0.8rem 0 1.1rem;
+  color: rgba(248, 250, 252, 0.78);
+  line-height: 1.6;
+}
+
+.heroPanelMeta {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.metaLabel {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 163, 184, 0.92);
+  font-weight: 700;
+}
+
+.metaValue {
+  color: #f8fafc;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 .kpiGrid {
@@ -237,6 +329,31 @@
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 4rem 1.25rem 3.5rem;
+  }
+
+  .heroShell {
+    grid-template-columns: 1fr;
+  }
+
+  .heroContent {
+    text-align: center;
+  }
+
+  .heroTitle,
+  .heroSubtitle,
+  .heroDescription {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .highlightList {
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .kpiGrid {

@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Coolify Docs',
-  tagline: 'Documentacao de implantacao segura de sistemas',
+  tagline: 'Documentacao para implantacao de sistemas via Coolify',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
