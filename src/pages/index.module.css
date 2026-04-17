@@ -13,6 +13,13 @@
     linear-gradient(120deg, #0b1220 0%, #121a2b 55%, #1a2438 100%);
 }
 
+[data-theme='dark'] .heroBanner {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(245, 158, 11, 0.18), transparent 34%),
+    radial-gradient(circle at 86% 22%, rgba(45, 212, 191, 0.16), transparent 30%),
+    linear-gradient(125deg, #020817 0%, #081120 48%, #0b1730 100%);
+}
+
 .heroBanner::before {
   content: '';
   position: absolute;
@@ -25,6 +32,10 @@
   background-size: 38px 38px;
   opacity: 0.35;
   pointer-events: none;
+}
+
+[data-theme='dark'] .heroBanner::before {
+  opacity: 0.18;
 }
 
 .heroGlowLeft,
@@ -77,6 +88,7 @@
   font-size: clamp(2.3rem, 5.5vw, 4.3rem);
   letter-spacing: -0.02em;
   max-width: 11ch;
+  color: #f8fafc;
 }
 
 .heroSubtitle {
@@ -93,6 +105,14 @@
   line-height: 1.6;
 }
 
+[data-theme='dark'] .heroSubtitle {
+  color: rgba(248, 250, 252, 0.96);
+}
+
+[data-theme='dark'] .heroDescription {
+  color: rgba(226, 232, 240, 0.92);
+}
+
 .highlightList {
   list-style: none;
   padding: 0;
@@ -106,6 +126,10 @@
   align-items: center;
   gap: 0.7rem;
   color: rgba(248, 250, 252, 0.88);
+}
+
+[data-theme='dark'] .highlightItem {
+  color: rgba(248, 250, 252, 0.96);
 }
 
 .highlightItem::before {
@@ -140,6 +164,16 @@
   text-align: left;
 }
 
+[data-theme='dark'] .heroPanel {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.88) 0%,
+    rgba(8, 15, 30, 0.96) 100%
+  );
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
 .heroPanelEyebrow {
   margin: 0;
   font-size: 0.78rem;
@@ -147,6 +181,10 @@
   letter-spacing: 0.08em;
   color: rgba(226, 232, 240, 0.78);
   font-weight: 700;
+}
+
+[data-theme='dark'] .heroPanelEyebrow {
+  color: rgba(226, 232, 240, 0.88);
 }
 
 .heroPanelTitle {
@@ -159,6 +197,10 @@
   margin: 0.8rem 0 1.1rem;
   color: rgba(248, 250, 252, 0.78);
   line-height: 1.6;
+}
+
+[data-theme='dark'] .heroPanelText {
+  color: rgba(226, 232, 240, 0.92);
 }
 
 .heroPanelMeta {
@@ -174,6 +216,10 @@
   letter-spacing: 0.08em;
   color: rgba(148, 163, 184, 0.92);
   font-weight: 700;
+}
+
+[data-theme='dark'] .metaLabel {
+  color: rgba(148, 163, 184, 0.98);
 }
 
 .metaValue {
@@ -201,6 +247,15 @@
   text-align: left;
 }
 
+[data-theme='dark'] .kpiCard {
+  border-color: rgba(148, 163, 184, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.82) 0%,
+    rgba(9, 16, 30, 0.92) 100%
+  );
+}
+
 .kpiValue {
   margin: 0;
   font-size: 1.15rem;
@@ -212,6 +267,10 @@
   margin: 0.3rem 0 0;
   color: rgba(248, 250, 252, 0.76);
   font-size: 0.9rem;
+}
+
+[data-theme='dark'] .kpiLabel {
+  color: rgba(226, 232, 240, 0.9);
 }
 
 .flowSection {
@@ -261,7 +320,7 @@
 
 [data-theme='dark'] .flowCard {
   border-color: rgba(148, 163, 184, 0.2);
-  background: linear-gradient(180deg, #111c31 0%, #0b1425 100%);
+  background: linear-gradient(180deg, #13203a 0%, #0d172a 100%);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
 }
 
@@ -289,6 +348,14 @@
   color: var(--ifm-color-emphasis-700);
 }
 
+[data-theme='dark'] .flowTitle {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .flowDescription {
+  color: rgba(226, 232, 240, 0.9);
+}
+
 .ctaSection {
   padding: 0 0 4.5rem;
   background: linear-gradient(180deg, #eef4fb 0%, #f6f9fc 100%);
@@ -311,6 +378,14 @@
     linear-gradient(120deg, #0f172a 0%, #16233a 52%, #1a2e49 100%);
   border: 1px solid rgba(148, 163, 184, 0.28);
   color: #e2e8f0;
+}
+
+[data-theme='dark'] .ctaCard {
+  border-color: rgba(148, 163, 184, 0.34);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(45, 212, 191, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(59, 130, 246, 0.16), transparent 28%),
+    linear-gradient(120deg, #0f172a 0%, #14233f 52%, #193256 100%);
 }
 
 .ctaTitle {
