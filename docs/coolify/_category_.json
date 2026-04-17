@@ -1,0 +1,9 @@
+{
+  "label": "Coolify",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "title": "Configuracao do Servidor no Coolify",
+    "description": "Cadastro da chave privada no painel, associacao ao servidor e validacao do host com Docker Engine."
+  }
+}

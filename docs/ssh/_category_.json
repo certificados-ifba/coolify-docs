@@ -1,0 +1,9 @@
+{
+  "label": "SSH",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "title": "Configuracao SSH",
+    "description": "Instalacao do OpenSSH, geracao de chave, configuracao no servidor e testes de conexao."
+  }
+}

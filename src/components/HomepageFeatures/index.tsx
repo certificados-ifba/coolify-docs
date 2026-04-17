@@ -11,32 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Base segura de acesso SSH',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Guias praticos para gerar chaves, configurar servidor Linux com
+        permissoes corretas e aplicar hardening basico no servico SSH.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Integracao com Coolify sem lacunas',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Processo passo a passo para cadastrar chave no painel, conectar com
+        repositorio Git e validar autenticacao ponta a ponta.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Operacao orientada por runbook',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Conteudo estruturado para times de plataforma: checklist de preparo,
+        criterios de aceite, troubleshooting e boas praticas de seguranca.
       </>
     ),
   },

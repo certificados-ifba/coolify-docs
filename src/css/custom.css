@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -6,25 +8,57 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #0f766e;
+  --ifm-color-primary-dark: #0d6a64;
+  --ifm-color-primary-darker: #0c625d;
+  --ifm-color-primary-darkest: #0a514d;
+  --ifm-color-primary-light: #118279;
+  --ifm-color-primary-lighter: #139187;
+  --ifm-color-primary-lightest: #17a79b;
   --ifm-code-font-size: 95%;
+  --ifm-background-color: #f6f9fc;
+  --ifm-font-family-base: 'Chivo', 'Segoe UI', 'Arial', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+  --ifm-heading-font-family: 'Chivo', 'Segoe UI', 'Arial', sans-serif;
+  --ifm-navbar-background-color: rgba(246, 249, 252, 0.9);
+  --ifm-footer-background-color: #0c1423;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #2dd4bf;
+  --ifm-color-primary-dark: #22c3af;
+  --ifm-color-primary-darker: #1db5a2;
+  --ifm-color-primary-darkest: #189587;
+  --ifm-color-primary-light: #48dcc8;
+  --ifm-color-primary-lighter: #62e2d1;
+  --ifm-color-primary-lightest: #92ece0;
+  --ifm-background-color: #060d1a;
+  --ifm-navbar-background-color: rgba(6, 13, 26, 0.92);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.footer {
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+main {
+  animation: page-fade-in 380ms ease-out;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
