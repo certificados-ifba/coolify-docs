@@ -16,15 +16,28 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     'introducao',
     'pre-requisitos',
+    'arquitetura-e-fluxo',
+    'estrutura-do-projeto',
+    'preparacao-do-repositorio-github',
     {
       type: 'category',
-      label: 'SSH',
+      label: 'Acesso SSH e Servidor',
       items: [
+        'ssh/configuracao-openssh',
         'ssh/geracao-chave',
         'ssh/configuracao-servidor',
         'ssh/teste-conexao',
       ],
     },
+    'configuracao-da-aplicacao-no-coolify',
+    'dockerfile',
+    'primeiro-deploy',
+    'configuracao-de-dominio',
+    'configuracao-dns',
+    'https-e-ssl',
+    'validacao-pos-implantacao',
+    'fluxo-de-atualizacao-e-cicd',
+    'health-check-e-disponibilidade',
     {
       type: 'category',
       label: 'Coolify',
@@ -32,20 +45,8 @@ const sidebars: SidebarsConfig = {
     },
     'boas-praticas',
     'troubleshooting',
+    'checklist-executivo-final',
   ],
-
-  // Sidebar manual para manter a sequencia operacional da documentacao.
-  /*
-  tutorialSidebar: [
-    'intro',
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
-    },
-  ],
-   */
 };
 
 export default sidebars;
