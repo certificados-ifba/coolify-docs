@@ -14,38 +14,57 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  */
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
-    'introducao',
-    'pre-requisitos',
-    'arquitetura-e-fluxo',
-    'estrutura-do-projeto',
-    'preparacao-do-repositorio-github',
     {
       type: 'category',
-      label: 'Acesso SSH e Servidor',
+      label: 'Visao geral',
+      items: ['intro', 'introducao', 'matriz-de-referencia-coolify'],
+    },
+    {
+      type: 'category',
+      label: 'Preparacao',
+      items: ['pre-requisitos', 'arquitetura-e-fluxo', 'estrutura-do-projeto', 'preparacao-do-repositorio-github'],
+    },
+    {
+      type: 'category',
+      label: 'Acesso e infraestrutura',
       items: [
-        'ssh/configuracao-openssh',
-        'ssh/geracao-chave',
-        'ssh/configuracao-servidor',
-        'ssh/teste-conexao',
+        {
+          type: 'category',
+          label: 'SSH no host',
+          items: [
+            'ssh/configuracao-openssh',
+            'ssh/geracao-chave',
+            'ssh/configuracao-servidor',
+            'ssh/teste-conexao',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Coolify e servidor',
+          items: ['coolify/configuracao-ssh', 'coolify/validacao-acesso'],
+        },
       ],
     },
-    'configuracao-da-aplicacao-no-coolify',
-    'dockerfile',
-    'primeiro-deploy',
-    'configuracao-de-dominio',
-    'configuracao-dns',
-    'https-e-ssl',
-    'validacao-pos-implantacao',
-    'fluxo-de-atualizacao-e-cicd',
-    'health-check-e-disponibilidade',
     {
       type: 'category',
-      label: 'Coolify',
-      items: ['coolify/configuracao-ssh', 'coolify/validacao-acesso'],
+      label: 'Deploy inicial',
+      items: ['configuracao-da-aplicacao-no-coolify', 'dockerfile', 'primeiro-deploy'],
     },
-    'boas-praticas',
-    'troubleshooting',
-    'checklist-executivo-final',
+    {
+      type: 'category',
+      label: 'Publicacao externa',
+      items: ['configuracao-de-dominio', 'configuracao-dns', 'https-e-ssl'],
+    },
+    {
+      type: 'category',
+      label: 'Operacao',
+      items: ['validacao-pos-implantacao', 'health-check-e-disponibilidade', 'fluxo-de-atualizacao-e-cicd'],
+    },
+    {
+      type: 'category',
+      label: 'Governanca',
+      items: ['troubleshooting', 'boas-praticas', 'checklist-executivo-final'],
+    },
   ],
 };
 

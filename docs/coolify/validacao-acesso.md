@@ -5,13 +5,26 @@ sidebar_position: 2
 
 # Validacao do servidor no Coolify
 
-Este documento valida se o Coolify consegue autenticar por SSH no servidor, instalar o Docker Engine e deixar o proxy operacional.
+Esta pagina valida se o Coolify consegue autenticar por SSH no servidor, instalar o Docker Engine e deixar o proxy operacional.
 
 ![Validar servidor e instalar o Docker Engine](/img/validar-servidor-e-instalar-o-docker-engine.webp)
 
 Figura 1: Ação de validação do host dentro da tela Geral do servidor.
 
-## 1. Executar a validacao
+## Objetivo
+
+Confirmar que o host esta apto para receber aplicativos e que a infraestrutura basica do Coolify foi concluida.
+
+## Pre-requisitos
+
+- Chave privada cadastrada e associada ao servidor.
+- Chave publica autorizada no host.
+- SSH ativo.
+- Acesso ao painel do Coolify.
+
+## Passos
+
+### 1. Executar a validacao
 
 Na tela do servidor `localhost`, acesse a aba **Geral** e clique em **Validar servidor e instalar o Docker Engine**.
 
@@ -22,21 +35,17 @@ Esse processo confirma que o Coolify consegue:
 - preparar o Docker Engine no host
 - habilitar o proxy necessário para deploys
 
-## 2. Resultado esperado
+### 2. Se a validacao falhar
 
-Depois da conclusão, o host deve exibir um status saudável, com indicativo verde como **Proxy em execução**.
+Revisar primeiro a autenticacao e depois a infraestrutura local:
 
-## 3. O que revisar se falhar
+- a chave privada cadastrada no painel.
+- a chave publica em `~/.ssh/authorized_keys`.
+- o serviço SSH em execucao.
+- a conectividade de rede do servidor.
+- as permissoes do diretorio `.ssh`.
 
-Se a validação não concluir com sucesso, revise:
-
-- a chave privada cadastrada no painel
-- a chave pública em `~/.ssh/authorized_keys`
-- o serviço SSH em execução
-- a conectividade de rede do servidor
-- permissões do diretório `.ssh`
-
-Comandos úteis no host:
+Comandos uteis no host:
 
 ```bash
 systemctl status ssh
@@ -46,15 +55,17 @@ ls -ld ~/.ssh
 ls -l ~/.ssh/authorized_keys
 ```
 
-## 4. Evidencias de aceite
+## Resultado esperado
 
-Considere a etapa concluída quando:
+- o host aparece validado.
+- o Docker Engine esta funcional.
+- o proxy esta em execucao.
+- o painel nao mostra erro de autenticacao.
 
-- o servidor aparece como validado
-- o Docker Engine está funcional
-- o proxy está em execução
-- o host está pronto para receber aplicações
+## Evidencias de aceite
 
-## 5. Proximo passo
+Considere a etapa concluida quando o servidor estiver validado, o Docker Engine estiver funcional e o proxy estiver em execucao.
 
-Com o host validado, siga para a etapa de cadastro e deploy das aplicações no projeto.
+## Proximo passo
+
+Com o host validado, siga para [Configuracao da aplicacao no Coolify](../configuracao-da-aplicacao-no-coolify.md).

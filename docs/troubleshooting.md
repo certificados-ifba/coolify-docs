@@ -5,24 +5,42 @@ sidebar_position: 9
 
 # Troubleshooting
 
-Este guia reúne problemas recorrentes em GitHub, SSH, Dockerfile, Coolify, DNS, HTTPS e publicação final. Use sempre uma abordagem estruturada: identificar a camada com falha, validar evidências e aplicar correção mínima antes de seguir.
+Este guia reune problemas recorrentes em GitHub, SSH, Dockerfile, Coolify, DNS, HTTPS e publicacao final. Use sempre uma abordagem estruturada: identificar a camada com falha, validar evidencias e aplicar correcao minima antes de seguir.
+
+## Objetivo
+
+Permitir diagnostico e correcao de incidentes sem dependencia de suporte informal, mantendo rastreabilidade tecnica.
+
+## Pre-requisitos
+
+- acesso aos logs de build/runtime no Coolify.
+- acesso ao host por SSH.
+- conhecimento da branch e versao implantada.
+
+## Regra de diagnostico
+
+1. Identifique a camada que falhou.
+2. Colete o erro exato.
+3. Compare com a ultima mudanca realizada.
+4. Corrija a menor causa possivel.
+5. Valide novamente.
 
 ## Ordem de diagnóstico recomendada
 
-1. Repositório e branch
-2. Acesso SSH ao servidor
-3. Configuração da chave no Coolify
-4. Build do Dockerfile
-5. Subida do container
-6. Domínio e DNS
-7. HTTPS e proxy reverso
-8. Health check e disponibilidade
+1. Repositório e branch.
+2. Acesso SSH ao servidor.
+3. Configuracao da chave no Coolify.
+4. Build do Dockerfile.
+5. Subida do container.
+6. Dominio e DNS.
+7. HTTPS e proxy reverso.
+8. Health check e disponibilidade.
 
 ## 1) Permission denied (publickey)
 
-- chave publica nao foi instalada no servidor
-- permissao incorreta em `~/.ssh` ou `authorized_keys`
-- chave privada errada sendo usada no cliente
+- chave publica nao foi instalada no servidor.
+- permissao incorreta em `~/.ssh` ou `authorized_keys`.
+- chave privada errada sendo usada no cliente.
 
 ### Diagnostico
 
@@ -40,8 +58,8 @@ chown -R "$USER":"$USER" ~/.ssh
 
 ## 2) Host key verification failed
 
-- mudanca de host key no servidor
-- entrada antiga em `known_hosts`
+- mudanca de host key no servidor.
+- entrada antiga em `known_hosts`.
 
 ### Correcao
 
@@ -52,8 +70,8 @@ ssh usuario@servidor
 
 ## 3) Timeout na conexao SSH
 
-- firewall bloqueando porta 22
-- servico SSH parado
+- firewall bloqueando porta 22.
+- servico SSH parado.
 
 ### Diagnostico
 
@@ -64,10 +82,10 @@ sudo systemctl status sshd || sudo systemctl status ssh
 
 ## 4) Build falha no Coolify
 
-- `Dockerfile` em caminho errado
-- erro em `COPY`, `RUN` ou `npm ci`
-- arquivo importante excluido pelo `.dockerignore`
-- branch errada selecionada
+- `Dockerfile` em caminho errado.
+- erro em `COPY`, `RUN` ou `npm ci`.
+- arquivo importante excluido pelo `.dockerignore`.
+- branch errada selecionada.
 
 ### Diagnostico
 
@@ -83,10 +101,10 @@ docker build -t app-teste .
 
 ## 5) Container sobe, mas a aplicacao nao responde
 
-- porta interna errada no Coolify
-- processo principal terminou apos o start
-- comando final da imagem nao manteve o processo em foreground
-- health check apontando para rota inexistente
+- porta interna errada no Coolify.
+- processo principal terminou apos o start.
+- comando final da imagem nao manteve o processo em foreground.
+- health check apontando para rota inexistente.
 
 ### Diagnostico rapido
 
@@ -97,9 +115,9 @@ docker logs -f NOME_DO_CONTAINER
 
 ## 6) Erro 502 Bad Gateway
 
-- o proxy do Coolify nao conseguiu alcancar a aplicacao
-- a porta configurada no painel nao e a mesma da aplicacao
-- o container caiu logo apos o deploy
+- o proxy do Coolify nao conseguiu alcancar a aplicacao.
+- a porta configurada no painel nao e a mesma da aplicacao.
+- o container caiu logo apos o deploy.
 
 ### Correcao tipica
 
@@ -110,9 +128,9 @@ docker logs -f NOME_DO_CONTAINER
 
 ## 7) Dominio nao resolve
 
-- registro DNS ausente
-- IP errado
-- propagacao ainda em andamento
+- registro DNS ausente.
+- IP errado.
+- propagacao ainda em andamento.
 
 ### Diagnostico
 
@@ -123,9 +141,9 @@ nslookup app.seudominio.com
 
 ## 8) HTTPS nao sobe
 
-- porta 80 bloqueada
-- dominio ainda nao aponta para o servidor correto
-- certificado nao conseguiu ser emitido
+- porta 80 bloqueada.
+- dominio ainda nao aponta para o servidor correto.
+- certificado nao conseguiu ser emitido.
 
 ### Validacoes
 
@@ -135,9 +153,9 @@ nslookup app.seudominio.com
 
 ## 9) Assets quebrados apos deploy
 
-- `baseUrl` incorreta no projeto
-- aplicacao publicada em subcaminho, mas configurada como raiz
-- build antigo em cache
+- `baseUrl` incorreta no projeto.
+- aplicacao publicada em subcaminho, mas configurada como raiz.
+- build antigo em cache.
 
 ### Correcao
 
@@ -147,8 +165,8 @@ nslookup app.seudominio.com
 
 ## 10) O Coolify nao aplica a nova configuracao
 
-- alteracao foi salva, mas nao houve redeploy
-- labels antigas continuam aplicadas no container anterior
+- alteracao foi salva, mas nao houve redeploy.
+- labels antigas continuam aplicadas no container anterior.
 
 ### Correcao
 
@@ -158,10 +176,10 @@ nslookup app.seudominio.com
 
 ## 11) O repositorio nao esta apto para deploy
 
-- falta `Dockerfile`
-- build local nunca foi testado
-- branch principal indefinida
-- segredos foram hardcoded em arquivo versionado
+- falta `Dockerfile`.
+- build local nunca foi testado.
+- branch principal indefinida.
+- segredos foram hardcoded em arquivo versionado.
 
 ### Correcao
 
@@ -171,9 +189,9 @@ nslookup app.seudominio.com
 
 ## 12) Health check falha
 
-- caminho configurado nao existe
-- aplicacao demora mais que o esperado para iniciar
-- endpoint exige autenticacao
+- caminho configurado nao existe.
+- aplicacao demora mais que o esperado para iniciar.
+- endpoint exige autenticacao.
 
 ### Correcao
 
@@ -185,9 +203,9 @@ nslookup app.seudominio.com
 
 Quando houver falha em producao:
 
-1. registrar o erro exato
-2. identificar a camada com falha
-3. coletar logs e evidencias
-4. aplicar a menor correcao necessaria
-5. revalidar a etapa anterior e a etapa atual
-6. atualizar a documentacao se o erro revelar uma lacuna do processo
+1. Registrar o erro exato.
+2. Identificar a camada com falha.
+3. Coletar logs e evidencias.
+4. Aplicar a menor correcao necessaria.
+5. Revalidar a etapa anterior e a etapa atual.
+6. Atualizar a documentacao se o erro revelar uma lacuna do processo.

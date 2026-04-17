@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Coolify Docs',
-  tagline: 'Documentacao para implantacao de sistemas via Coolify',
+  tagline: 'Guia operacional para implantacao de aplicacoes com Coolify',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -77,9 +77,10 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Guias',
+          label: 'Documentacao',
         },
-        {to: '/docs/introducao', label: 'Comecar', position: 'left'},
+        {to: '/docs/intro', label: 'Como ler', position: 'left'},
+        {to: '/docs/introducao', label: 'Introducao', position: 'left'},
         {
           href: 'https://github.com',
           label: 'GitHub',
@@ -93,6 +94,10 @@ const config: Config = {
         {
           title: 'Documentacao',
           items: [
+            {
+              label: 'Como ler',
+              to: '/docs/intro',
+            },
             {
               label: 'Introducao',
               to: '/docs/introducao',
@@ -132,13 +137,13 @@ const config: Config = {
               to: '/blog',
             },
             {
-              label: 'GitHub',
+              label: 'Repositorio',
               href: 'https://github.com',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Coolify Docs. Construido com Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Coolify Docs. Documentacao operacional para Coolify.`,
     },
     prism: {
       theme: prismThemes.github,

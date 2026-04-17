@@ -5,73 +5,47 @@ sidebar_position: 5
 
 # Estrutura do projeto
 
-Antes de conectar o repositório ao Coolify, a equipe precisa entender a estrutura minima esperada no projeto.
+O repositorio precisa ser simples de entender por quem vai implantar, manter e auditar. A estrutura deste projeto prioriza previsibilidade: o que interessa ao deploy deve estar evidente na raiz ou em caminhos padronizados, sem depender de conhecimento implícito.
 
-## Objetivo desta pagina
+## Objetivo
 
-Explicar como o repositório deve estar organizado para que o build com `Dockerfile` seja previsivel e facil de manter.
+Definir uma estrutura minima que favoreca build reproduzivel e leitura clara pelo time.
 
-## Arquivos principais
+## O que o leitor precisa enxergar
 
-Os arquivos mais relevantes para o fluxo de implantacao sao:
+- Onde esta a aplicacao principal.
+- Onde esta o `Dockerfile`.
+- Onde estao variaveis de ambiente e arquivos de configuracao.
+- O que deve ou nao ser versionado.
+- Qual e o ponto de entrada do deploy.
 
-- `Dockerfile`
-- `.dockerignore`
-- `package.json`, `requirements.txt`, `pom.xml` ou equivalente, dependendo da stack
-- arquivos de configuracao da aplicacao
-- documentacao operacional do projeto
+## Estrutura minima esperada
 
-## Papel do Dockerfile
+- `Dockerfile` na raiz ou em caminho documentado.
+- Codigo fonte da aplicacao em diretorio previsivel.
+- Arquivos de configuracao de build versionados.
+- `.dockerignore` coerente com o build.
+- `.gitignore` cobrindo saidas temporarias.
+- Documentacao apontando a branch de deploy.
 
-O `Dockerfile` precisa estar versionado no repositório e em um caminho conhecido pelo Coolify. Ele sera o ponto de verdade para o build da imagem.
+## Regras de organizacao
 
-## Papel do `.dockerignore`
+1. Mantenha o caminho do `Dockerfile` fixo e documentado.
+2. Se usar subdiretorio, declare isso explicitamente no Coolify.
+3. Nao misture artefatos de build com codigo-fonte.
+4. Documente variaveis essenciais para o deploy.
+5. Evite dependencias implicitas no ambiente local.
 
-O `.dockerignore` reduz o contexto de build e evita enviar artefatos desnecessarios, como:
+## O que validar antes de publicar
 
-- `node_modules`
-- builds antigos
-- caches
-- arquivos temporarios
+- o build local encontra o `Dockerfile`.
+- o contexto de build esta correto.
+- o `.dockerignore` nao remove arquivos necessarios.
+- a branch de deploy nao depende de alteracoes locais nao commitadas.
 
-## Estrutura recomendada
+## Problemas comuns
 
-Uma estrutura simples e eficiente costuma seguir o padrao:
-
-```text
-/
-├── Dockerfile
-├── .dockerignore
-├── README.md
-├── codigo-da-aplicacao
-├── arquivos-de-configuracao
-└── documentacao
-```
-
-## Branch de deploy
-
-Defina explicitamente qual branch sera usada pelo Coolify. As opcoes mais comuns sao:
-
-- `main`
-- `master`
-- `production`
-- `release`
-
-Evite ambiguidade. Se houver mais de um ambiente, documente a branch de cada um.
-
-## O que revisar no repositório
-
-- o `Dockerfile` builda sem editar o ambiente manualmente
-- o comando final da imagem sobe a aplicacao
-- a porta interna esta clara
-- variaveis sensiveis nao estao commitadas
-- existe documentacao minima para operacao
-
-## Critério de aceite desta etapa
-
-O repositório esta apto quando outra pessoa consegue identificar com rapidez:
-
-- como a imagem sera montada
-- qual branch sera implantada
-- onde estao os arquivos criticos
-- o que precisa ser configurado no Coolify
+- `Dockerfile` apontando para pasta errada.
+- arquivos de build ignorados por engano.
+- estrutura local diferente da estrutura usada no deploy.
+- repositorio sem convencao clara de entrada principal.

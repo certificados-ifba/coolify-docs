@@ -1,47 +1,58 @@
 ---
+title: Como ler esta documentacao
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Como ler esta documentacao
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Esta pagina existe para orientar a leitura da trilha completa e explicitar a logica da documentacao: referencia geral do Coolify, adaptacao ao nosso cenario e procedimento especifico do projeto.
 
-## Getting Started
+## Como a trilha esta organizada
 
-Get started by **creating a new site**.
+1. Visao geral e rastreabilidade da base de conhecimento.
+2. Preparacao do ambiente, repositorio e fundamentos operacionais.
+3. Acesso ao host, integracao com Coolify e deploy inicial.
+4. Publicacao externa com dominio, DNS e HTTPS.
+5. Operacao continua com validacao, health check, atualizacao e troubleshooting.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Convenio editorial
 
-### What you'll need
+Cada pagina usa os mesmos blocos para reduzir ambiguidade operacional:
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- objetivo
+- pre-requisitos
+- passos
+- validacao
+- problemas comuns
 
-## Generate a new site
+## O que e referencia, adaptacao e procedimento
 
-Generate a new Docusaurus site using the **classic template**.
+- RC significa referencia geral do Coolify e do seu comportamento esperado.
+- AS significa adaptacao ao nosso cenario, que combina GitHub, Dockerfile, Coolify, dominio e DNS.
+- PP significa procedimento do projeto, ou seja, a forma oficial de operar este repositorio.
 
-The classic template will automatically be added to your project after you run the command:
+## Ordem de leitura recomendada
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+1. [Introducao](./introducao.md)
+2. [Pre-requisitos](./pre-requisitos.md)
+3. [Arquitetura e fluxo](./arquitetura-e-fluxo.md)
+4. [Estrutura do projeto](./estrutura-do-projeto.md)
+5. [Preparacao do repositorio GitHub](./preparacao-do-repositorio-github.md)
+6. [Configuracao da aplicacao no Coolify](./configuracao-da-aplicacao-no-coolify.md)
+7. [Dockerfile](./dockerfile.md)
+8. [Primeiro deploy](./primeiro-deploy.md)
+9. [Configuracao de dominio](./configuracao-de-dominio.md)
+10. [Configuracao DNS](./configuracao-dns.md)
+11. [HTTPS e SSL](./https-e-ssl.md)
+12. [Validacao pos-implantacao](./validacao-pos-implantacao.md)
+13. [Health check e disponibilidade](./health-check-e-disponibilidade.md)
+14. [Fluxo de atualizacao e CI-CD](./fluxo-de-atualizacao-e-cicd.md)
+15. [Troubleshooting](./troubleshooting.md)
+16. [Boas praticas](./boas-praticas.md)
+17. [Checklist executivo final](./checklist-executivo-final.md)
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Referencias de apoio
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+- [Matriz de referencia Coolify](./matriz-de-referencia-coolify.md)
+- [Checklist executivo final](./checklist-executivo-final.md)
 
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.

@@ -7,75 +7,53 @@ sidebar_position: 4
 
 Esta pagina apresenta a visão de ponta a ponta da implantacao. O objetivo e garantir que o leitor entenda o papel de cada componente antes de entrar na execucao operacional.
 
-## Visao geral da arquitetura
+## Objetivo
 
-O fluxo base desta documentacao considera:
-
-- GitHub como origem do codigo-fonte
-- `Dockerfile` como definicao de build e imagem
-- Coolify como plataforma de deploy e operacao
-- servidor Linux como host da aplicacao
-- dominio ou subdominio para acesso publico
-- DNS para apontar o nome ao IP do servidor
-- HTTPS para trafego seguro e publicacao confiavel
+Estabelecer uma visão sistemica do processo para reduzir erro de sequenciamento e facilitar diagnostico por camada.
 
 ## Fluxo de ponta a ponta
 
 1. O codigo e versionado no GitHub.
-2. O repositório e preparado para deploy com `Dockerfile`.
-3. O servidor e validado no Coolify com acesso SSH.
-4. A aplicacao e cadastrada no Coolify apontando para a branch correta.
-5. O Coolify faz o build da imagem usando o `Dockerfile`.
-6. O container e iniciado no servidor.
-7. O dominio e configurado no Coolify.
-8. O DNS aponta o dominio para o IP do servidor.
-9. O proxy do Coolify recebe as requisicoes externas e encaminha para a porta interna da aplicacao.
-10. O HTTPS e emitido e validado.
+2. O `Dockerfile` define como a aplicacao sera empacotada.
+3. O Coolify conecta o repositorio e executa o build.
+4. O container sobe no host com a porta interna correta.
+5. O dominio aponta para o host por meio do DNS.
+6. O proxy publica o servico com HTTPS.
+7. O time valida funcionamento, observabilidade e atualizacoes.
 
-## Papel do GitHub
+## Papéis de cada componente
 
-O GitHub e o ponto de controle do codigo. Ele define:
+- GitHub guarda a fonte da verdade do codigo.
+- `Dockerfile` garante build reproduzivel.
+- Coolify orquestra deploy, variaveis, runtime e proxy.
+- DNS torna o servico acessivel por nome.
+- HTTPS garante transporte seguro e confianca no acesso publico.
 
-- branch de deploy
-- historico de mudancas
-- revisao por pull request, quando adotada
-- integracoes de CI para validacao automatica
+## Pontos de controle por etapa
 
-## Papel do Dockerfile
+- Antes do GitHub: branch e organizacao do repositorio.
+- Antes do Coolify: host validado e credenciais prontas.
+- Antes do dominio: a aplicacao precisa subir e responder na porta interna.
+- Antes do HTTPS: o DNS precisa apontar para o host correto.
+- Antes do encerramento: teste funcional e health check confirmados.
 
-O `Dockerfile` descreve:
+## Decisoes que precisam estar escritas
 
-- como o build deve ser executado
-- quais arquivos entram na imagem
-- qual processo principal sera iniciado
-- qual porta interna a aplicacao usara
+- qual e a branch de deploy.
+- qual e a porta interna da aplicacao.
+- qual e o caminho do `Dockerfile`.
+- qual dominio e qual ambiente foram usados.
+- quais validacoes comprovam cada etapa.
 
-Sem um `Dockerfile` correto, o Coolify nao consegue reproduzir o ambiente esperado.
+## Validacao esperada
 
-## Papel do Coolify
+- o leitor consegue descrever a jornada completa sem pular etapas.
+- cada bloqueio operacional tem uma camada responsavel identificada.
+- a equipe sabe em que momento DNS e SSL entram no fluxo.
 
-O Coolify centraliza:
+## Problemas comuns
 
-- conexao com o repositorio
-- definicao da branch de deploy
-- execucao do build
-- criacao do container
-- associacao de dominio
-- health check e observabilidade basica
-
-## Papel do dominio, DNS e HTTPS
-
-- dominio: nome pelo qual a aplicacao sera acessada
-- DNS: mecanismo que aponta esse nome para o IP do servidor
-- HTTPS: camada que protege o trafego entre navegador e aplicacao
-
-Esses tres elementos precisam estar coerentes para a publicacao ser considerada concluida.
-
-## O que precisa ser validado em cada camada
-
-- GitHub: branch certa, codigo certo, Dockerfile certo
-- servidor: SSH, recursos e rede
-- Coolify: configuracao da aplicacao e porta interna
-- DNS: apontamento correto
-- HTTPS: emissao e resposta sem erro
-- aplicacao: pagina abre, assets carregam e health check responde
+- tentar resolver DNS antes de validar o container.
+- configurar HTTPS sem o DNS apontar para o host.
+- confundir branch de trabalho com branch de deploy.
+- tratar build, deploy e proxy como a mesma etapa.

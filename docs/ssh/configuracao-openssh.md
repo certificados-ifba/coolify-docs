@@ -5,195 +5,92 @@ sidebar_position: 0
 
 # OpenSSH
 
-O Coolify usa SSH para se conectar ao seu servidor e implantar seus aplicativos. Isso é válido mesmo quando você está usando o servidor `localhost` onde o Coolify está sendo executado.
-
-Você precisa configurar o SSH corretamente para que o Coolify consiga acessar seus servidores.
+O Coolify usa SSH para se conectar ao servidor e implantar aplicações. Esta pagina trata da preparacao do OpenSSH no host que vai receber a conexao da plataforma.
 
 ![Servidor configurado para acesso SSH no Coolify](/img/servidor.webp)
 
-Figura 1: Tela do servidor dentro do Coolify, onde a chave privada e a validacao do host serao associadas.
+Figura 1: Tela do servidor no Coolify, onde a chave privada e a validacao do host serao associadas.
 
-## Métodos de configuração
+## Objetivo
 
-Existem duas maneiras de configurar o OpenSSH.
+Garantir que o servidor aceite autenticacao por chave publica, que o servico SSH esteja ativo e que o Coolify consiga validar o host com segurança.
 
-- Configuração semiautomática
-- Configuração manual
+## Pre-requisitos
+
+- Acesso administrativo ao servidor.
+- Capacidade de editar `/etc/ssh/sshd_config`.
+- Acesso ao usuário que recebera a chave em `authorized_keys`.
+- Servico SSH instalado ou apto a instalacao.
 
 :::important
-A chave SSH não deve ter uma senha ou autenticação de dois fatores (2FA) habilitada para o usuário que executa o script de instalação do Coolify, caso contrário, a conexão SSH falhará.
+A chave SSH nao deve ter senha nem depender de 2FA para o fluxo automatizado do Coolify.
 :::
 
-## Configuração semiautomática
+## Passos
 
-A configuração semiautomática é a abordagem recomendada. Nela, o script de instalação do Coolify prepara parte do fluxo, mas o administrador ainda deve garantir que o OpenSSH esteja instalado, habilitado e com autenticação por chave pública ativa.
-
-### 1. Instale o servidor OpenSSH
-
-**Debian / Ubuntu / Pop!_OS | CentOS / RHEL / Rocky / Fedora | SLES/openSUSE | Arch Linux | Linux alpino**
+### 1. Instale o OpenSSH
 
 ```bash
 apt update && apt install -y openssh-server
 systemctl enable --now ssh
 ```
 
-### 2. Configure o SSH
+### 2. Ajuste a configuracao do SSH
 
-Edite o arquivo de configuração do serviço SSH:
-
-```bash
-nano /etc/ssh/sshd_config
-```
-
-Defina, valide ou ajuste estas opções:
+Edite `/etc/ssh/sshd_config` e confirme estas diretivas:
 
 ```ini
 PubkeyAuthentication yes
 PermitRootLogin prohibit-password
 ```
 
-:::info Observação
-A opção `PermitRootLogin` pode ser definida como `yes`, `without-password` ou `prohibit-password`. Para maior segurança, recomenda-se o uso de `prohibit-password`.
-
-Certifique-se de adicionar suas chaves SSH ao arquivo `~/.ssh/authorized_keys` antes de configurar `PermitRootLogin prohibit-password`, caso contrário, você poderá se bloquear o acesso ao servidor.
-:::
-
-Reinicie o serviço SSH:
-
-**Debian / Ubuntu / Pop!_OS | CentOS / RHEL / Rocky / Fedora / Arch / openSUSE | Linux alpino**
-
-```bash
-systemctl restart ssh
-```
-
-## Configuração manual
-
-:::info Observação
-Os seguintes passos são executados automaticamente pelo script de instalação do Coolify. A configuração manual só é necessária caso a instalação automática falhe.
-:::
-
-### 1. Instale o servidor OpenSSH
-
-**Debian / Ubuntu / Pop!_OS | CentOS / RHEL / Rocky / Fedora | SLES/openSUSE | Arch Linux | Linux alpino**
-
-```bash
-apt update && apt install -y openssh-server
-systemctl enable --now ssh
-```
-
-### 2. Configure o SSH
-
-Edite o arquivo de configuração:
-
-```bash
-nano /etc/ssh/sshd_config
-```
-
-Defina as opções abaixo:
+Se necessario, aplique endurecimento adicional depois da validacao inicial:
 
 ```ini
-PubkeyAuthentication yes
-PermitRootLogin prohibit-password
+PasswordAuthentication no
 ```
 
-:::info Observação
-A opção `PermitRootLogin` pode ser definida como `yes`, `without-password` ou `prohibit-password`. Para maior segurança, recomenda-se `prohibit-password`.
-
-Certifique-se de adicionar suas chaves SSH ao arquivo `~/.ssh/authorized_keys` antes de configurar `PermitRootLogin prohibit-password`, caso contrário, você poderá se bloquear o acesso ao servidor.
-:::
-
-Reinicie o SSH:
-
-**Debian / Ubuntu / Pop!_OS | CentOS / RHEL / Rocky / Fedora / Arch / openSUSE | Linux alpino**
+### 3. Reinicie o servico SSH
 
 ```bash
 systemctl restart ssh
 ```
 
-### 3. Gere uma chave SSH para o Coolify
+### 4. Confirme a autorizacao por chave publica
 
-Execute os seguintes comandos no próprio servidor onde o Coolify está instalado. Essa chave será usada pelo Coolify para acessar o host via SSH.
-
-Gerar chave SSH:
-
-```bash
-ssh-keygen -t ed25519 -a 100 \
-  -f /data/coolify/ssh/keys/id.root@host.docker.internal \
-  -q -N "" -C root@coolify
-```
-
-Ajustar propriedade do arquivo:
-
-```bash
-chown 9999 /data/coolify/ssh/keys/id.root@host.docker.internal
-```
-
-### 4. Autorize a chave pública
-
-Adicione a chave pública ao arquivo `authorized_keys` do usuário que receberá a conexão SSH:
+No usuario que recebera a conexao, garanta o arquivo `authorized_keys` com permissao correta.
 
 ```bash
 mkdir -p ~/.ssh
-cat /data/coolify/ssh/keys/id.root@host.docker.internal.pub >> ~/.ssh/authorized_keys
-```
-
-Alterar permissões:
-
-```bash
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
 ```
 
-### 5. Adicione a chave privada ao Coolify
+## O que a etapa precisa comprovar
 
-Copie o conteúdo da chave privada gerada no servidor:
+- `PubkeyAuthentication` esta habilitado.
+- o servico SSH esta em execucao.
+- a conexao por senha nao e obrigatoria para o fluxo do Coolify.
+- a chave publica podera ser adicionada sem bloqueio administrativo.
 
-```bash
-# This command will show you the content of the Private key, you have to copy the content manually
-cat /data/coolify/ssh/keys/id.root@host.docker.internal
-```
+## Validacao esperada
 
-No painel do Coolify, acesse a área de chaves privadas e adicione uma nova chave.
+- `systemctl status ssh` responde sem erro.
+- o servidor aceita conexao por chave publica.
+- o usuario alvo possui diretório `.ssh` com permissao adequada.
 
-![Adicione uma nova chave privada](/img/adicione-uma-nova-chave-privada.webp)
+## Problemas comuns
 
-Figura 2: Abertura do fluxo para cadastrar uma nova chave privada no painel.
+- editar `sshd_config` e esquecer de reiniciar o servico.
+- habilitar `PermitRootLogin prohibit-password` sem antes cadastrar a chave.
+- confundir o usuario que recebe a chave com o usuario que administra o Coolify.
+- tentar usar uma chave com passphrase no fluxo automatizado.
 
-No campo de entrada da chave privada, cole exatamente o conteúdo copiado na etapa anterior:
+## Referencia visual
 
-![Colar a chave privada](/img/colar-a-chave-privada.webp)
+![Servidor configurado para acesso SSH no Coolify](/img/servidor.webp)
 
-Figura 3: Campo de cadastro da chave privada no Coolify.
+Figura 2: O host pronto para receber a chave privada cadastrada no Coolify.
 
-Acesse a aba **Servidores** e clique no servidor `localhost`:
+## Proximo passo
 
-![Servidor localhost](/img/servidor.webp)
-
-Figura 4: Seleção do servidor que receberá a chave privada cadastrada.
-
-Na página **Chave privada**, selecione a chave privada adicionada na etapa anterior:
-
-![Selecione a chave privada](/img/selecione-a-chave-privada.webp)
-
-Figura 5: Associação da chave privada ao servidor dentro do Coolify.
-
-### 6. Validar servidor
-
-Acesse a página **Geral** e clique em **Validar servidor e instalar o Docker Engine**:
-
-![Validar servidor e instalar Docker Engine](/img/validar-servidor-e-instalar-o-docker-engine.webp)
-
-Figura 6: Etapa final de validação do servidor e instalação do Docker Engine.
-
-Após a conclusão, o esperado é visualizar um status verde como **Proxy em execução**, indicando que o host está acessível, o Docker está operacional e o Coolify pode prosseguir com deploys.
-
-## Resultado esperado
-
-Ao final desta página, o ambiente deve estar com:
-
-- OpenSSH instalado e ativo
-- Autenticação por chave pública habilitada
-- Chave SSH do Coolify gerada sem senha
-- Chave pública adicionada ao `authorized_keys`
-- Chave privada cadastrada no painel do Coolify
-- Servidor validado com Docker Engine disponível
+Siga para [Geracao de chave SSH no Coolify](./geracao-chave.md) para criar a credencial usada pelo painel.

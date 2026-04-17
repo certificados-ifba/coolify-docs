@@ -5,64 +5,48 @@ sidebar_position: 6
 
 # Preparacao do repositorio GitHub
 
-Esta etapa garante que o repositório esteja realmente pronto para ser consumido pelo Coolify.
+Antes de conectar o Coolify, o repositório precisa estar pronto para receber deploys sem ajustes improvisados. Esta pagina consolida o que precisa existir no GitHub para que o fluxo seja reproduzivel.
 
-## O que revisar antes de conectar ao Coolify
+## Objetivo
 
-- branch principal ou branch de deploy definida
-- `Dockerfile` presente e funcional
-- `.dockerignore` configurado
-- dependencias versionadas corretamente
-- variaveis sensiveis removidas do codigo
-- porta da aplicacao documentada
+Garantir que o repositório tenha branch, arquivos e convenções aptos para o primeiro deploy.
 
-## Criterios minimos para o repositorio estar apto
+## O que precisa estar definido
 
-- o build local deve ser reproduzivel
-- a aplicacao deve iniciar sem ajustes manuais pos-build
-- o comando principal da imagem deve manter o processo em execucao
-- o repositório deve conter apenas o necessario para o deploy
+- Branch de produção definida e protegida, se aplicável.
+- Estrutura de pastas coerente com o `Dockerfile`.
+- Variáveis de ambiente registradas fora do código-fonte.
+- README ou documentação de apoio indicando como executar a aplicação.
+- Permissões e acessos adequados no repositório.
 
-## Validacoes recomendadas
+## Itens obrigatórios
 
-### Validar a branch atual
+- branch principal definida e documentada.
+- `Dockerfile` versionado.
+- `.gitignore` atualizado.
+- variáveis sensíveis fora do código.
+- caminho do build conhecido.
+- permissão de leitura para o Coolify no repo.
 
-```bash
-git branch --show-current
-```
+## Passos recomendados
 
-### Validar remotos configurados
+1. Confirme a branch que sera usada em producao.
+2. Valide o `Dockerfile` localmente.
+3. Revise `.gitignore` e `.dockerignore`.
+4. Mova segredos para variaveis de ambiente.
+5. Garanta que o repositório tenha nome e descrição coerentes.
+6. Confirme permissão de acesso ao GitHub para o Coolify.
 
-```bash
-git remote -v
-```
+## Validação esperada
 
-### Validar o build local da imagem
+- `git status` limpo antes do deploy.
+- branch apontando para o conteúdo correto.
+- build local reproduzivel.
+- nenhum segredo visivel no historico recente.
 
-```bash
-docker build -t app-local .
-```
+## Problemas comuns
 
-### Validar a execucao local
-
-```bash
-docker run --rm -p 8080:80 app-local
-```
-
-Adapte a porta externa conforme a porta interna da aplicacao.
-
-## Checklist de preparacao
-
-- [ ] branch de deploy definida
-- [ ] `Dockerfile` validado localmente
-- [ ] `docker run` validado localmente
-- [ ] `.dockerignore` revisado
-- [ ] segredos retirados do codigo
-- [ ] README ou documentacao operacional minima atualizada
-
-## Riscos comuns
-
-- confiar em build nunca testado fora da maquina do autor
-- usar arquivos locais nao versionados sem perceber
-- deixar a porta da aplicacao implicita
-- misturar configuracoes de homologacao e producao na mesma branch
+- branch errada conectada ao ambiente de producao.
+- segredos commitados por engano.
+- `.dockerignore` excluindo dependencias necessarias.
+- branch publica sem revisão minima.

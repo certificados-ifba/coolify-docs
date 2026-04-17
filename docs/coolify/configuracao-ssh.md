@@ -5,13 +5,25 @@ sidebar_position: 1
 
 # Configuracao da chave SSH no Coolify
 
-Este documento cobre o cadastro da chave privada no painel do Coolify para permitir autenticação segura com o servidor administrado pela plataforma.
+Esta pagina cobre o cadastro da chave privada no painel do Coolify para permitir autenticacao segura com o servidor administrado pela plataforma.
 
 ![Adicione uma nova chave privada](/img/adicione-uma-nova-chave-privada.webp)
 
 Figura 1: Início do cadastro da chave privada no painel do Coolify.
 
-## 1. Obter a chave privada gerada no servidor
+## Objetivo
+
+Cadastrar a chave privada gerada no servidor e vincula-la ao host que sera validado no Coolify.
+
+## Pre-requisitos
+
+- Chave privada gerada no servidor.
+- Chave publica ja autorizada no `authorized_keys`.
+- Acesso ao painel do Coolify.
+
+## Passos
+
+### 1. Obter a chave privada gerada no servidor
 
 No servidor com Coolify instalado, exiba a chave privada:
 
@@ -21,7 +33,7 @@ cat /data/coolify/ssh/keys/id.root@host.docker.internal
 
 Copie o conteúdo completo.
 
-## 2. Adicionar uma nova chave privada
+### 2. Adicionar uma nova chave privada
 
 No painel do Coolify:
 
@@ -35,7 +47,7 @@ No painel do Coolify:
 
 Figura 2: Colagem do conteúdo da chave privada no formulário do Coolify.
 
-## 3. Associar a chave ao servidor
+### 3. Associar a chave ao servidor
 
 Depois do cadastro:
 
@@ -52,6 +64,15 @@ Figura 3: Seleção do host em que a chave privada será utilizada.
 
 Figura 4: Associação da chave privada cadastrada ao servidor `localhost`.
 
-## 4. Resultado esperado
+## Validacao esperada
 
-Ao final, a chave privada deve estar disponível no painel e vinculada ao servidor correto para que o Coolify possa validá-lo e instalar o Docker Engine, quando necessário.
+- a chave privada aparece no painel sem erro de formato.
+- o servidor `localhost` mostra a chave associada.
+- a pagina de validacao passa a usar a chave correta.
+
+## Problemas comuns
+
+- colar uma chave incompleta ou com espacos extras.
+- cadastrar a chave no projeto errado.
+- esquecer de associar a chave ao servidor depois do cadastro.
+- usar um nome generico demais e perder rastreabilidade.

@@ -5,13 +5,25 @@ sidebar_position: 3
 
 # Configuracao da chave SSH no servidor
 
-Este documento cobre a autorização da chave pública gerada para o Coolify e a preparação do servidor para aceitar conexões SSH com autenticação por chave.
+Esta pagina trata da autorizacao da chave publica gerada para o Coolify e da preparacao do servidor para aceitar conexoes SSH com autenticacao por chave.
 
 ![Tela do servidor no Coolify](/img/servidor.webp)
 
 Figura 1: O servidor `localhost` no Coolify será o destino da chave privada cadastrada.
 
-## 1. Garantir que a pasta `.ssh` exista
+## Objetivo
+
+Autorizar a chave publica no servidor, ajustar permissoes e deixar o host pronto para ser associado ao Coolify.
+
+## Pre-requisitos
+
+- Chave SSH ja gerada no servidor.
+- Acesso ao usuario que recebera a conexao.
+- Servico SSH em funcionamento.
+
+## Passos
+
+### 1. Garantir que a pasta `.ssh` exista
 
 No usuário que receberá a conexão SSH, crie a estrutura básica:
 
@@ -20,7 +32,7 @@ mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 ```
 
-## 2. Autorizar a chave pública do Coolify
+### 2. Autorizar a chave pública do Coolify
 
 Adicione a chave pública gerada pelo Coolify ao arquivo `authorized_keys`:
 
@@ -34,7 +46,7 @@ Aplique as permissões corretas:
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-## 3. Validar o arquivo de configuracao do OpenSSH
+### 3. Validar o arquivo de configuracao do OpenSSH
 
 Edite o arquivo `/etc/ssh/sshd_config`:
 
@@ -59,13 +71,13 @@ PasswordAuthentication no
 Adicione a chave ao `authorized_keys` antes de endurecer o acesso com `PermitRootLogin prohibit-password`, para evitar bloqueio administrativo.
 :::
 
-## 4. Reiniciar o SSH
+### 4. Reiniciar o SSH
 
 ```bash
 sudo systemctl restart ssh
 ```
 
-## 5. Associar a chave privada ao servidor no Coolify
+### 5. Associar a chave privada ao servidor no Coolify
 
 Dentro do Coolify:
 
@@ -78,6 +90,15 @@ Dentro do Coolify:
 
 Figura 2: Associação da chave privada ao servidor configurado.
 
-## Resultado esperado
+## Validacao esperada
 
-Ao final desta etapa, o servidor deve aceitar a chave pública gerada para o Coolify e o painel deve permitir a seleção dessa chave privada no cadastro do host.
+- o servidor aceita a chave publica gerada para o Coolify.
+- o arquivo `authorized_keys` possui permissões corretas.
+- a chave privada aparece selecionavel no Coolify.
+
+## Problemas comuns
+
+- esquecer de criar `.ssh` antes de gravar `authorized_keys`.
+- definir permissao incorreta e o SSH ignorar a chave.
+- reiniciar o servico sem validar a sintaxe do `sshd_config`.
+- selecionar a chave errada no painel do Coolify.

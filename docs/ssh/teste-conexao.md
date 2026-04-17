@@ -5,13 +5,26 @@ sidebar_position: 4
 
 # Teste de conexao SSH
 
-Este documento valida que o host está pronto para uso no Coolify e que a integração SSH foi concluída com sucesso.
+Esta pagina valida que o host esta pronto para uso no Coolify e que a integracao SSH foi concluida com sucesso.
 
 ![Validar servidor e instalar o Docker Engine](/img/validar-servidor-e-instalar-o-docker-engine.webp)
 
 Figura 1: Tela usada para validar o servidor e preparar o Docker Engine.
 
-## 1. Validacao no painel do Coolify
+## Objetivo
+
+Confirmar que o Coolify consegue autenticar no host, instalar o Docker Engine e deixar o proxy operacional.
+
+## Pre-requisitos
+
+- Chave privada cadastrada no Coolify.
+- Chave publica autorizada no servidor.
+- Servico SSH ativo.
+- Acesso ao painel do Coolify.
+
+## Passos
+
+### 1. Validacao no painel do Coolify
 
 No painel do Coolify:
 
@@ -20,9 +33,7 @@ No painel do Coolify:
 3. Abra a página **Geral**
 4. Clique em **Validar servidor e instalar o Docker Engine**
 
-Esse é o teste principal do fluxo operacional documentado pelo Coolify.
-
-## 2. O que o teste valida
+### 2. O que o teste valida
 
 Durante a validação, o Coolify confirma:
 
@@ -32,11 +43,7 @@ Durante a validação, o Coolify confirma:
 - preparação do Docker Engine no host
 - disponibilidade do proxy da plataforma
 
-## 3. Resultado esperado
-
-Ao final do processo, o painel deve indicar um status saudável para o host. Em instalações bem-sucedidas, o indicativo esperado é um status verde como **Proxy em execução**.
-
-## 4. Validacoes complementares no servidor
+### 3. Validacoes complementares no servidor
 
 Se necessário, valide diretamente no servidor:
 
@@ -46,24 +53,24 @@ docker ps
 systemctl status ssh
 ```
 
-Se o Docker tiver sido instalado na validação, ele já deve responder sem erro.
+## Resultado esperado
 
-## 5. Quando a validacao falha
+- o host aparece validado no painel.
+- o Docker Engine responde no servidor.
+- o proxy da plataforma fica em execução.
+- a página do servidor nao mostra erro de autenticacao.
 
-Se a validação falhar, revise os pontos abaixo:
+## Quando a validacao falha
 
-- a chave privada correta foi cadastrada no Coolify
-- a chave pública correspondente está em `~/.ssh/authorized_keys`
-- o serviço SSH está ativo
-- `PubkeyAuthentication yes` está definido
-- `PermitRootLogin prohibit-password` foi aplicado sem bloquear o acesso
-- o servidor possui acesso à internet para instalar o Docker Engine
+Revisar primeiro a camada SSH e depois a camada Docker:
 
-## 6. Evidencia de aceite
+- a chave privada correta foi cadastrada no Coolify.
+- a chave pública correspondente esta em `~/.ssh/authorized_keys`.
+- o serviço SSH esta ativo.
+- `PubkeyAuthentication yes` esta definido.
+- `PermitRootLogin prohibit-password` foi aplicado sem bloquear o acesso.
+- o servidor possui acesso à internet para instalar o Docker Engine.
 
-Considere a etapa concluída quando:
+## Evidencia de aceite
 
-- o servidor aparecer saudável no painel
-- a chave privada estiver associada corretamente
-- o Docker estiver instalado e funcional
-- o proxy da plataforma estiver em execução
+Considere a etapa concluida quando o host estiver saudavel no painel e o proxy estiver em execução.

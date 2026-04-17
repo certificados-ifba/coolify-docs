@@ -5,87 +5,66 @@ sidebar_position: 2
 
 # Introducao
 
-Esta documentacao foi criada para permitir que qualquer pessoa consiga implantar uma aplicacao no Coolify do zero, usando um repositorio no GitHub e um `Dockerfile` como base de build e publicacao.
+Esta documentacao foi estruturada para permitir a implantacao completa de uma aplicacao no Coolify sem depender de explicacoes externas. O foco e operacional: o leitor deve conseguir preparar o repositorio, configurar o host, publicar a aplicacao, ativar dominio e HTTPS, validar o ambiente e manter o fluxo de atualizacao com previsibilidade.
 
 ## Objetivo
 
-Ao final desta trilha, o leitor deve conseguir:
+Ao final da trilha, o leitor deve conseguir sair do zero ate o ambiente publicado e validado em producao, cobrindo:
 
-- entender o contexto arquitetural da implantacao
-- validar todos os pre-requisitos tecnicos e operacionais
-- preparar o repositorio GitHub para deploy
-- configurar o servidor e o acesso SSH utilizado pelo Coolify
-- cadastrar a aplicacao no Coolify usando `Dockerfile`
-- realizar o primeiro deploy com dominio e DNS corretos
-- habilitar HTTPS e validar a publicacao
-- operar atualizacoes com fluxo de CI/CD previsivel
-- diagnosticar e corrigir falhas comuns de implantacao
+- preparacao de repositório no GitHub
+- build por Dockerfile
+- configuracao de aplicacao no Coolify
+- dominio, DNS e HTTPS
+- validacao pos-implantacao
+- operacao continua com fluxo de atualizacao e CI/CD
 
-## Escopo
+## Como esta documentacao foi montada
 
-Este material cobre:
+- **RC (Referencia Coolify):** conceitos, comportamentos e fluxo base da plataforma.
+- **AS (Adaptacao de cenario):** ajustes para o nosso cenario com GitHub, Dockerfile, dominio e ambiente self-hosted.
+- **PP (Procedimento do projeto):** decisoes operacionais, convencoes e criterios de aceite deste repositorio.
 
-- GitHub como origem do codigo
-- Dockerfile como mecanismo de build
-- Coolify como plataforma de deploy
-- DNS, dominio e HTTPS
-- health check, validacao operacional e CI/CD
-- troubleshooting e boas praticas para ambientes reais
+Consulte a [Matriz de referencia Coolify](./matriz-de-referencia-coolify.md) para rastreabilidade completa.
 
-Este material nao substitui:
+## O que esta documentacao nao assume
 
-- politicas internas de governanca da organizacao
-- arquitetura detalhada da aplicacao implantada
-- requisitos especificos de compliance fora do escopo do projeto
-
-## Publico-alvo
-
-Esta documentacao foi desenhada para:
-
-- desenvolvedores que precisam publicar aplicacoes sem depender de suporte informal
-- analistas de sistemas responsaveis por operacao e implantacao
-- equipes de infraestrutura e plataforma que administram ambientes self-hosted
-- estudantes e profissionais que precisam entender o fluxo completo de deploy no Coolify
+- que o leitor conheca o Coolify previamente
+- que o repositório esteja pronto para producao
+- que DNS e HTTPS funcionem sem configuracao explicita
+- que a aplicacao tenha porta, runtime ou health check padronizados por default
 
 ## Resultado esperado
 
-Quando a trilha estiver concluida, a equipe deve ter:
+- existe um fluxo reprodutivel para o primeiro deploy
+- a superficie publica responde em dominio configurado
+- o HTTPS esta ativo e validado
+- o health check identifica indisponibilidade real
+- a equipe sabe atualizar e diagnosticar falhas sem depender de suporte informal
 
-- um repositorio apto para deploy
-- um servidor validado pelo Coolify
-- uma aplicacao configurada com `Dockerfile`
-- dominio e DNS apontando corretamente
-- HTTPS ativo
-- validacao final de acesso e operacao
-- processo de atualizacao documentado
+## Ordem operacional resumida
 
-## Ordem ideal de leitura
+1. validar pre-requisitos e arquitetura.
+2. preparar o repositorio e o host.
+3. cadastrar a aplicacao no Coolify e executar o primeiro deploy.
+4. publicar dominio, DNS e HTTPS.
+5. validar a aplicacao em condicao real.
+6. padronizar atualizacoes, troubleshooting e checklist final.
+
+## Leitura recomendada para novo integrante
+
+Se voce esta entrando no processo sem contexto previo, siga esta ordem:
 
 1. [Pre-requisitos](./pre-requisitos.md)
 2. [Arquitetura e fluxo](./arquitetura-e-fluxo.md)
 3. [Estrutura do projeto](./estrutura-do-projeto.md)
 4. [Preparacao do repositorio GitHub](./preparacao-do-repositorio-github.md)
-5. [Configuracao do OpenSSH](./ssh/configuracao-openssh.md)
-6. [Geracao da chave SSH](./ssh/geracao-chave.md)
-7. [Configuracao da chave no servidor](./ssh/configuracao-servidor.md)
-8. [Teste de conexao SSH](./ssh/teste-conexao.md)
-9. [Configuracao da chave no Coolify](./coolify/configuracao-ssh.md)
-10. [Validacao do servidor](./coolify/validacao-acesso.md)
-11. [Configuracao da aplicacao no Coolify](./configuracao-da-aplicacao-no-coolify.md)
-12. [Dockerfile](./dockerfile.md)
-13. [Primeiro deploy](./primeiro-deploy.md)
-14. [Dominio, DNS e HTTPS](./configuracao-de-dominio.md)
-15. [Validacao pos-implantacao](./validacao-pos-implantacao.md)
-16. [Fluxo de atualizacao e CI/CD](./fluxo-de-atualizacao-e-cicd.md)
-17. [Boas praticas](./boas-praticas.md)
-18. [Troubleshooting](./troubleshooting.md)
-19. [Checklist executivo final](./checklist-executivo-final.md)
+5. [Configuracao da aplicacao no Coolify](./configuracao-da-aplicacao-no-coolify.md)
+6. [Primeiro deploy](./primeiro-deploy.md)
+7. [Validacao pos-implantacao](./validacao-pos-implantacao.md)
 
-## Como usar este material
+## Erros de leitura mais comuns
 
-Cada pagina foi escrita com quatro preocupacoes:
-
-- contexto: explicar por que a etapa existe
-- execucao: mostrar o que precisa ser feito
-- validacao: definir como saber se deu certo
-- risco: apontar erros comuns e cuidados operacionais
+- tentar começar por DNS e HTTPS antes de ter um deploy funcionando
+- configurar branch ou caminho de Dockerfile sem confirmar o repositorio
+- pular a validacao do host e descobrir erro somente no primeiro deploy
+- nao registrar evidencias e perder rastreabilidade de aceite
