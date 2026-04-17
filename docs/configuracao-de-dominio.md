@@ -3,33 +3,33 @@ title: Configuracao de dominio
 sidebar_position: 13
 ---
 
-# Configuracao de dominio
+# Configuração de domínio
 
-Depois que a aplicacao estiver apta para rodar, configure o dominio ou subdominio que sera exposto ao usuario final.
+Depois que a aplicação estiver apta para rodar, configure o domínio ou subdomínio que será exposto ao usuário final.
 
 ## Objetivo
 
-Definir o endereco publico oficial da aplicacao de forma consistente com ambiente e estrategia de operacao.
+Definir o endereço público oficial da aplicação de forma consistente com ambiente e estratégia de operação.
 
 ## Pre-requisitos
 
-- aplicacao em execucao no Coolify.
+- aplicação em execução no Coolify.
 - IP do host confirmado.
-- responsavel por DNS definido.
+- responsável por DNS definido.
 
 ## O que precisa ser decidido antes
 
 - ambiente alvo.
 - nome oficial da URL.
-- estrategia `www` ou sem `www`.
-- se a aplicacao sera publicada na raiz ou em subdominio.
+- estratégia `www` ou sem `www`.
+- se a aplicação será publicada na raiz ou em subdomínio.
 
 ## Definicao do dominio
 
 Escolha um nome que deixe claro:
 
 - ambiente
-- aplicacao
+- aplicação
 - contexto institucional ou corporativo
 
 Exemplos:
@@ -38,38 +38,38 @@ Exemplos:
 - `docs.exemplo.com`.
 - `sistema.hom.exemplo.com`.
 
-## Configuracao no Coolify
+## Configuração no Coolify
 
 Ao cadastrar o dominio no painel:
 
-- use o dominio completo.
+- use o domínio completo.
 - prefira incluir o protocolo esperado.
-- defina a estrategia entre `www` e nao `www`.
-- confirme se o subdominio corresponde ao ambiente correto.
+- defina a estratégia entre `www` e não `www`.
+- confirme se o subdomínio corresponde ao ambiente correto.
 
 ## Regras e cuidados
 
-- use apenas dominios que a equipe realmente controla.
-- nao misture dominio de producao com ambiente de teste.
-- alinhe o `baseUrl` da aplicacao se ela depender disso.
-- nao publique DNS sem saber qual IP do servidor recebera trafego.
+- use apenas domínios que a equipe realmente controla.
+- não misture domínio de produção com ambiente de teste.
+- alinhe o `baseUrl` da aplicação se ela depender disso.
+- não publique DNS sem saber qual IP do servidor receberá tráfego.
 
 ## Passos
 
-1. Defina o dominio final.
-2. Cadastre o dominio na aplicacao do Coolify.
-3. Salve a configuracao.
+1. Defina o domínio final.
+2. Cadastre o domínio na aplicação do Coolify.
+3. Salve a configuração.
 4. Confirme se a URL refletida no painel esta correta.
 
 ## Validacao da etapa
 
-- [ ] dominio principal escolhido.
-- [ ] dominio cadastrado no Coolify.
-- [ ] politica de redirecionamento definida.
+- [ ] domínio principal escolhido.
+- [ ] domínio cadastrado no Coolify.
+- [ ] política de redirecionamento definida.
 - [ ] equipe sabe qual URL deve responder ao final.
 
 ## Problemas comuns
 
-- cadastrar dominio errado no app e corrigir apenas no DNS.
-- alternar entre www e nao-www sem definir redirecionamento.
-- usar o mesmo dominio para homologacao e producao.
+- cadastrar domínio errado no app e corrigir apenas no DNS.
+- alternar entre www e não-www sem definir redirecionamento.
+- usar o mesmo domínio para homologação e produção.

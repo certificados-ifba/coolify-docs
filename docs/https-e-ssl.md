@@ -5,20 +5,20 @@ sidebar_position: 15
 
 # HTTPS e SSL
 
-O HTTPS e responsavel por proteger o trafego entre o navegador e a aplicacao. No fluxo com Coolify, a emissao depende principalmente de dominio correto, DNS valido e proxy funcional.
+O HTTPS é responsável por proteger o tráfego entre o navegador e a aplicação. No fluxo com Coolify, a emissão depende principalmente de domínio correto, DNS válido e proxy funcional.
 
 ## Objetivo
 
-Ativar acesso seguro com certificado valido e garantir que o trafego externo seja entregue com criptografia.
+Ativar acesso seguro com certificado válido e garantir que o tráfego externo seja entregue com criptografia.
 
 ## Pre-requisitos
 
-- dominio cadastrado na aplicacao.
+- domínio cadastrado na aplicação.
 - DNS propagado para o IP correto.
 - portas 80 e 443 liberadas.
 - proxy do Coolify em execucao.
 
-## Sequencia recomendada
+## Sequência recomendada
 
 1. Confirmar dominio.
 2. Confirmar DNS.
@@ -27,38 +27,38 @@ Ativar acesso seguro com certificado valido e garantir que o trafego externo sej
 
 ## Como a emissao funciona
 
-Em configuracoes comuns, o Coolify e o proxy associado tentam emitir automaticamente o certificado apos:
+Em configurações comuns, o Coolify e o proxy associado tentam emitir automaticamente o certificado após:
 
-- dominio cadastrado.
+- domínio cadastrado.
 - DNS apontando para o servidor.
-- portas `80` e `443` disponiveis.
+- portas `80` e `443` disponíveis.
 
 ## Dependencias para funcionar
 
-- dominio valido.
+- domínio válido.
 - DNS propagado.
-- proxy do Coolify em execucao.
-- aplicacao registrada corretamente.
+- proxy do Coolify em execução.
+- aplicação registrada corretamente.
 
 ## Validacoes necessarias
 
 - acessar a URL por HTTPS.
-- conferir se o navegador nao exibe alerta de certificado.
-- validar se ha redirecionamento adequado de HTTP para HTTPS.
+- conferir se o navegador não exibe alerta de certificado.
+- validar se há redirecionamento adequado de HTTP para HTTPS.
 
 ## Falhas comuns
 
-- dominio apontando para IP errado.
+- domínio apontando para IP errado.
 - porta `80` bloqueada.
-- tentativa de emissao antes da propagacao do DNS.
-- configuracao salva sem redeploy.
+- tentativa de emissão antes da propagação do DNS.
+- configuração salva sem redeploy.
 
 ## Critério de aceite
 
-Considere esta etapa concluida quando a aplicacao responder com HTTPS valido no dominio final planejado.
+Considere esta etapa concluída quando a aplicação responder com HTTPS válido no domínio final planejado.
 
 ## Problemas comuns
 
-- tentar emitir certificado antes da propagacao DNS.
+- tentar emitir certificado antes da propagação DNS.
 - firewall bloqueando 80/443.
-- salvar alteracao de dominio sem redeploy.
+- salvar alteração de domínio sem redeploy.

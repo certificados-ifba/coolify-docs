@@ -82,12 +82,13 @@
 
 .heroContent {
   text-align: left;
+  color: #f8fafc;
 }
 
 .heroTitle {
   font-size: clamp(2.3rem, 5.5vw, 4.3rem);
   letter-spacing: -0.02em;
-  max-width: 11ch;
+  max-width: 22ch;
   color: #f8fafc;
 }
 
@@ -412,6 +413,7 @@
 
   .heroContent {
     text-align: center;
+    color: #f8fafc;
   }
 
   .heroTitle,

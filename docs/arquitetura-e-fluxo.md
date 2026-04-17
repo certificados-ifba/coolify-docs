@@ -5,50 +5,50 @@ sidebar_position: 4
 
 # Arquitetura e fluxo
 
-Esta pagina apresenta a visão de ponta a ponta da implantacao. O objetivo e garantir que o leitor entenda o papel de cada componente antes de entrar na execucao operacional.
+Esta página apresenta a visão de ponta a ponta da implantação. O objetivo é garantir que o leitor entenda o papel de cada componente antes de entrar na execução operacional.
 
 ## Objetivo
 
-Estabelecer uma visão sistemica do processo para reduzir erro de sequenciamento e facilitar diagnostico por camada.
+Estabelecer uma visão sistêmica do processo para reduzir erro de sequenciamento e facilitar diagnóstico por camada.
 
 ## Fluxo de ponta a ponta
 
-1. O codigo e versionado no GitHub.
-2. O `Dockerfile` define como a aplicacao sera empacotada.
-3. O Coolify conecta o repositorio e executa o build.
+1. O código é versionado no GitHub.
+2. O `Dockerfile` define como a aplicação será empacotada.
+3. O Coolify conecta o repositório e executa o build.
 4. O container sobe no host com a porta interna correta.
-5. O dominio aponta para o host por meio do DNS.
+5. O domínio aponta para o host por meio do DNS.
 6. O proxy publica o servico com HTTPS.
 7. O time valida funcionamento, observabilidade e atualizacoes.
 
 ## Papéis de cada componente
 
-- GitHub guarda a fonte da verdade do codigo.
-- `Dockerfile` garante build reproduzivel.
-- Coolify orquestra deploy, variaveis, runtime e proxy.
-- DNS torna o servico acessivel por nome.
-- HTTPS garante transporte seguro e confianca no acesso publico.
+- GitHub guarda a fonte da verdade do código.
+- `Dockerfile` garante build reproduzível.
+- Coolify orquestra deploy, variáveis, runtime e proxy.
+- DNS torna o serviço acessível por nome.
+- HTTPS garante transporte seguro e confiança no acesso público.
 
 ## Pontos de controle por etapa
 
-- Antes do GitHub: branch e organizacao do repositorio.
+- Antes do GitHub: branch e organização do repositório.
 - Antes do Coolify: host validado e credenciais prontas.
-- Antes do dominio: a aplicacao precisa subir e responder na porta interna.
+- Antes do domínio: a aplicação precisa subir e responder na porta interna.
 - Antes do HTTPS: o DNS precisa apontar para o host correto.
 - Antes do encerramento: teste funcional e health check confirmados.
 
 ## Decisoes que precisam estar escritas
 
-- qual e a branch de deploy.
-- qual e a porta interna da aplicacao.
-- qual e o caminho do `Dockerfile`.
-- qual dominio e qual ambiente foram usados.
-- quais validacoes comprovam cada etapa.
+- qual é a branch de deploy.
+- qual é a porta interna da aplicação.
+- qual é o caminho do `Dockerfile`.
+- qual domínio e qual ambiente foram usados.
+- quais validações comprovam cada etapa.
 
 ## Validacao esperada
 
 - o leitor consegue descrever a jornada completa sem pular etapas.
-- cada bloqueio operacional tem uma camada responsavel identificada.
+- cada bloqueio operacional tem uma camada responsável identificada.
 - a equipe sabe em que momento DNS e SSL entram no fluxo.
 
 ## Problemas comuns

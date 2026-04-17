@@ -5,17 +5,17 @@ sidebar_position: 11
 
 # Dockerfile
 
-O `Dockerfile` e a base do deploy neste projeto. Ele define como o build acontece e qual imagem final sera executada pelo Coolify.
+O `Dockerfile` é a base do deploy neste projeto. Ele define como o build acontece e qual imagem final será executada pelo Coolify.
 
 ## Objetivo
 
-Definir um build reproduzivel, com runtime estavel e compativel com o fluxo de implantacao da plataforma.
+Definir um build reproduzível, com runtime estável e compatível com o fluxo de implantação da plataforma.
 
 ## O que o arquivo precisa resolver
 
-- instalar dependencias.
+- instalar dependências.
 - copiar arquivos corretos.
-- compilar ou montar a aplicacao.
+- compilar ou montar a aplicação.
 - definir a imagem final.
 - iniciar o processo principal.
 
@@ -27,16 +27,16 @@ Definir um build reproduzivel, com runtime estavel e compativel com o fluxo de i
 
 ## Estrutura recomendada
 
-Em muitos casos, um build multi-stage e a melhor escolha:
+Em muitos casos, um build multi-stage é a melhor escolha:
 
-- stage de build: instala dependencias e gera artefatos.
-- stage final: publica somente o necessario para execucao.
+- stage de build: instala dependências e gera artefatos.
+- stage final: publica somente o necessário para execução.
 
 ## Beneficios do multi-stage
 
 - imagem final menor.
-- menos superficie de ataque.
-- menos ruido operacional.
+- menos superfície de ataque.
+- menos ruído operacional.
 - build mais organizado.
 
 ## Como validar localmente
@@ -53,15 +53,15 @@ docker build -t app-local .
 docker run --rm -p 8080:80 app-local
 ```
 
-Substitua a porta interna conforme a sua aplicacao.
+Substitua a porta interna conforme a sua aplicação.
 
 ## O que revisar no Dockerfile
 
-- a imagem base e confiavel e compativel.
-- os comandos de build sao reprodutiveis.
-- o processo principal nao encerra imediatamente.
-- a porta interna esta clara.
-- o build nao depende de arquivos ausentes no repositorio.
+- a imagem base é confiável e compatível.
+- os comandos de build são reprodutíveis.
+- o processo principal não encerra imediatamente.
+- a porta interna está clara.
+- o build não depende de arquivos ausentes no repositório.
 
 ## Validacao operacional
 
@@ -69,11 +69,11 @@ Considere o `Dockerfile` aceito quando:
 
 - o build local termina sem erro.
 - o container sobe localmente.
-- a aplicacao responde em teste local.
-- o mesmo arquivo pode ser apontado no Coolify sem adaptacoes manuais.
+- a aplicação responde em teste local.
+- o mesmo arquivo pode ser apontado no Coolify sem adaptações manuais.
 
 ## Problemas comuns
 
 - copiar arquivos errados para a imagem final.
-- esquecer variavel ou arquivo exigido em runtime.
-- usar imagem base nao suportada pela stack da aplicacao.
+- esquecer variável ou arquivo exigido em runtime.
+- usar imagem base não suportada pela stack da aplicação.

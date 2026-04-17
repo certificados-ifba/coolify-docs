@@ -3,83 +3,83 @@ title: Fluxo de atualizacao e CI-CD
 sidebar_position: 17
 ---
 
-# Fluxo de atualizacao e CI-CD
+# Fluxo de atualização e CI/CD
 
 Depois do primeiro deploy, o foco passa a ser atualização segura e previsível.
 
 ## Objetivo
 
-Estabelecer um processo de mudanca controlado, com validacoes antes do deploy e estrategia clara de rollback.
+Estabelecer um processo de mudança controlado, com validações antes do deploy e estratégia clara de rollback.
 
 ## Pre-requisitos
 
 - branch de deploy oficial definida.
-- politicas de merge alinhadas.
-- responsaveis por aprovacao e validacao pos-deploy definidos.
+- políticas de merge alinhadas.
+- responsáveis por aprovação e validação pós-deploy definidos.
 
 ## O que precisa estar combinado
 
-- quando o deploy sera automatico.
-- quando o deploy sera manual.
-- quem aprova a mudanca.
+- quando o deploy será automático.
+- quando o deploy será manual.
+- quem aprova a mudança.
 - como fazer rollback.
 
 ## Como novas alteracoes serao publicadas
 
 O fluxo mais comum e:
 
-1. alteracao no codigo.
+1. alteração no código.
 2. commit na branch apropriada.
 3. push para o GitHub.
-4. validacoes automatizadas, se existirem.
-5. deploy manual ou automatico no Coolify.
+4. validações automatizadas, se existirem.
+5. deploy manual ou automático no Coolify.
 
 ## Integracao entre GitHub e Coolify
 
 O Coolify pode observar uma branch e disparar deploys quando houver novas alteracoes. Mesmo assim, a equipe deve definir explicitamente:
 
 - quais branches podem acionar deploy.
-- se o deploy sera automatico ou manual.
-- quem aprova mudancas para producao.
+- se o deploy será automático ou manual.
+- quem aprova mudanças para produção.
 
 ## Estrategia recomendada para producao
 
 - CI valida build e testes antes do merge.
-- branch protegida para producao.
-- deploy manual assistido ou automatico controlado.
-- checklist de validacao pos-implantacao.
+- branch protegida para produção.
+- deploy manual assistido ou automático controlado.
+- checklist de validação pós-implantação.
 
 ## Passos
 
-1. Altere o codigo em uma branch de trabalho.
-2. Execute validacoes locais e de CI.
+1. Altere o código em uma branch de trabalho.
+2. Execute validações locais e de CI.
 3. Faça merge na branch monitorada.
 4. Dispare ou aguarde o deploy no Coolify.
-5. Execute a validacao pos-implantacao.
+5. Execute a validação pós-implantação.
 
 ## O que o CI deve cobrir
 
 - lint.
 - testes automatizados.
-- build da aplicacao.
+- build da aplicação.
 - opcionalmente build do `Dockerfile`.
 
 ## O que o Coolify deve cobrir
 
 - build da imagem final de deploy.
 - subida do container.
-- aplicacao de configuracoes do ambiente.
-- health check e observacao inicial.
+- aplicação de configurações do ambiente.
+- health check e observação inicial.
 
 ## Riscos comuns
 
-- deploy automatico sem validacao minima.
+- deploy automático sem validação mínima.
 - branch errada conectada ao ambiente.
-- alteracao de `Dockerfile` sem teste local.
-- falta de estrategia de rollback.
+- alteração de `Dockerfile` sem teste local.
+- falta de estratégia de rollback.
 
 ## Validacoes esperadas
 
-- cada mudanca publicada pode ser rastreada a commit e autor.
-- existe evidencias de verificacao pre-deploy.
+- cada mudança publicada pode ser rastreada a commit e autor.
+- existe evidências de verificação pré-deploy.
 - equipe sabe executar rollback sem improviso.

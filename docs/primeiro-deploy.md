@@ -5,15 +5,15 @@ sidebar_position: 12
 
 # Primeiro deploy
 
-Esta e a primeira execucao real do fluxo. O objetivo aqui e sair do cadastro da aplicacao para uma publicacao funcional no servidor.
+Esta é a primeira execução real do fluxo. O objetivo aqui é sair do cadastro da aplicação para uma publicação funcional no servidor.
 
 ## Objetivo
 
-Executar o primeiro deploy completo com coleta de evidencias tecnicas para liberar as etapas de dominio e HTTPS.
+Executar o primeiro deploy completo com coleta de evidências técnicas para liberar as etapas de domínio e HTTPS.
 
 ## Pre-requisitos
 
-- aplicacao cadastrada no Coolify.
+- aplicação cadastrada no Coolify.
 - `Dockerfile` configurado.
 - branch e porta interna revisadas.
 
@@ -21,7 +21,7 @@ Executar o primeiro deploy completo com coleta de evidencias tecnicas para liber
 
 No painel do Coolify:
 
-1. Revise a configuracao salva.
+1. Revise a configuração salva.
 2. Confirme branch e `Dockerfile`.
 3. Acione o deploy.
 4. Acompanhe logs de build e runtime.
@@ -30,44 +30,44 @@ No painel do Coolify:
 
 - clone do repositório.
 - build da imagem.
-- criacao do container.
-- inicializacao do processo principal.
-- verificacao de health check, se configurado.
+- criação do container.
+- inicialização do processo principal.
+- verificação de health check, se configurado.
 
 ## Como validar o build
 
 O build deve concluir sem:
 
-- erro de dependencia.
+- erro de dependência.
 - erro de caminho no `Dockerfile`.
-- erro de permissao de acesso ao repositório.
-- falha por variavel ausente.
+- erro de permissão de acesso ao repositório.
+- falha por variável ausente.
 
 ## Como validar se o container subiu
 
 Sinais positivos:
 
-- aplicacao aparece como `Running`.
+- aplicação aparece como `Running`.
 - logs mostram o processo principal ativo.
-- a porta esperada esta acessivel internamente.
+- a porta esperada está acessível internamente.
 
 ## Erros iniciais mais comuns
 
 - porta interna errada.
 - `Dockerfile` invalido.
-- dominio configurado antes do DNS estar pronto.
-- processo principal encerrando apos o start.
+- domínio configurado antes do DNS estar pronto.
+- processo principal encerrando após o start.
 
 ## Checklist do primeiro deploy
 
-- [ ] build concluido.
-- [ ] container em execucao.
+- [ ] build concluído.
+- [ ] container em execução.
 - [ ] logs sem erro fatal.
-- [ ] health check, se usado, esta respondendo.
-- [ ] aplicacao acessivel por IP ou dominio configurado.
+- [ ] health check, se usado, está respondendo.
+- [ ] aplicação acessível por IP ou domínio configurado.
 
 ## Problemas comuns
 
-- processo principal encerra apos inicializacao.
-- variavel de ambiente obrigatoria ausente.
-- health check aponta para rota indisponivel.
+- processo principal encerra após inicialização.
+- variável de ambiente obrigatória ausente.
+- health check aponta para rota indisponível.

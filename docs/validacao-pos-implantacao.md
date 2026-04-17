@@ -3,42 +3,42 @@ title: Validacao pos-implantacao
 sidebar_position: 16
 ---
 
-# Validacao pos-implantacao
+# Validação pós-implantação
 
-Publicar a aplicacao nao encerra o trabalho. E necessario validar se o sistema esta realmente utilizavel em producao.
+Publicar a aplicação não encerra o trabalho. É necessário validar se o sistema está realmente utilizável em produção.
 
 ## Objetivo
 
-Comprovar disponibilidade funcional e tecnica apos deploy, com evidencias suficientes para aceite formal.
+Comprovar disponibilidade funcional e técnica após o deploy, com evidências suficientes para aceite formal.
 
 ## Pre-requisitos
 
-- deploy concluido no Coolify.
-- dominio configurado.
-- HTTPS ativo ou em fase final de ativacao.
+- deploy concluído no Coolify.
+- domínio configurado.
+- HTTPS ativo ou em fase final de ativação.
 
 ## O que deve ser validado
 
 - acesso pela URL final.
-- carregamento da pagina principal.
+- carregamento da página principal.
 - carregamento de assets.
-- rotas criticas.
-- logs sem falhas obvias.
+- rotas críticas.
+- logs sem falhas óbvias.
 
 ## Checklist final de publicacao
 
-- [ ] dominio abre corretamente.
-- [ ] HTTPS esta ativo.
-- [ ] pagina principal responde sem erro.
-- [ ] assets estao carregando.
+- [ ] domínio abre corretamente.
+- [ ] HTTPS está ativo.
+- [ ] página principal responde sem erro.
+- [ ] assets estão carregando.
 - [ ] health check responde, se houver.
-- [ ] logs nao mostram falhas criticas.
+- [ ] logs não mostram falhas críticas.
 
 ## Testes de acesso
 
-- abrir a aplicacao em navegador.
-- validar resposta em aba anonima.
-- testar em rede externa, quando possivel.
+- abrir a aplicação em navegador.
+- validar resposta em aba anônima.
+- testar em rede externa, quando possível.
 
 ## Testes de dominio e HTTPS
 
@@ -50,21 +50,21 @@ curl -I https://SEU_DOMINIO
 
 Dependendo do projeto, revise:
 
-- autenticacao.
+- autenticação.
 - rotas principais.
 - chamadas a API.
-- arquivos estaticos.
+- arquivos estáticos.
 - redirecionamentos.
 
 ## Evidencias recomendadas
 
 - URL validada.
 - logs do deploy bem-sucedido.
-- print do status da aplicacao no Coolify.
-- registro da data e versao implantada.
+- print do status da aplicação no Coolify.
+- registro da data e versão implantada.
 
 ## Problemas comuns
 
-- validar apenas status no painel e nao validar acesso real do usuario.
-- ignorar assets quebrados em paginas internas.
-- encerrar implantacao sem registro de versao e horario.
+- validar apenas status no painel e não validar acesso real do usuário.
+- ignorar assets quebrados em páginas internas.
+- encerrar implantação sem registro de versão e horário.

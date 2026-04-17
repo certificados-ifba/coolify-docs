@@ -3,34 +3,34 @@ title: Configuracao DNS
 sidebar_position: 14
 ---
 
-# Configuracao DNS
+# Configuração DNS
 
-O DNS conecta o dominio configurado no Coolify ao IP real do servidor.
+O DNS conecta o domínio configurado no Coolify ao IP real do servidor.
 
 ## Objetivo
 
-Garantir que o dominio publico resolva para o host correto antes da emissao de HTTPS.
+Garantir que o domínio público resolva para o host correto antes da emissão de HTTPS.
 
 ## Pre-requisitos
 
-- dominio cadastrado no Coolify.
-- IP publico confirmado.
+- domínio cadastrado no Coolify.
+- IP público confirmado.
 - acesso ao provedor DNS.
 
 ## O que precisa ser definido
 
 - registro principal.
 - TTL desejado.
-- se havera `www` ou apenas subdominio.
-- se existe IPv6 disponivel.
+- se haverá `www` ou apenas subdomínio.
+- se existe IPv6 disponível.
 
 ## Registros mais comuns
 
-Para a maioria dos cenarios, use:
+Para a maioria dos cenários, use:
 
 - registro `A` para IPv4.
-- registro `AAAA` para IPv6, se aplicavel.
-- registro `CNAME` quando fizer sentido apontar um subdominio para outro nome.
+- registro `AAAA` para IPv6, se aplicável.
+- registro `CNAME` quando fizer sentido apontar um subdomínio para outro nome.
 
 ## Exemplo pratico
 
@@ -42,10 +42,10 @@ A    app.exemplo.com    ->    203.0.113.10
 
 1. Crie o registro no provedor DNS.
 2. Aponte para o IP correto do servidor.
-3. Aguarde a propagacao.
+3. Aguarde a propagação.
 4. Valide a resolucao externamente.
 
-## Validar a propagacao
+## Validar a propagação
 
 ```bash
 dig +short app.exemplo.com
@@ -56,17 +56,17 @@ nslookup app.exemplo.com
 
 - confirme o IP do servidor antes de publicar.
 - entenda o TTL usado pelo provedor DNS.
-- nao dependa de HTTPS antes de o DNS apontar corretamente.
+- não dependa de HTTPS antes de o DNS apontar corretamente.
 
 ## Checklist da etapa
 
 - [ ] registro DNS criado.
 - [ ] IP correto configurado.
-- [ ] propagacao validada.
-- [ ] dominio responde para o host esperado.
+- [ ] propagação validada.
+- [ ] domínio responde para o host esperado.
 
 ## Problemas comuns
 
-- TTL alto atrasando validacao e gerando diagnostico incorreto.
+- TTL alto atrasando validação e gerando diagnóstico incorreto.
 - registros duplicados para o mesmo host.
 - apontar para IP antigo do servidor.

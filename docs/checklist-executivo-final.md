@@ -5,18 +5,18 @@ sidebar_position: 21
 
 # Checklist executivo final
 
-Use esta pagina como resumo operacional antes de declarar a implantacao concluida.
+Use esta página como resumo operacional antes de declarar a implantação concluída.
 
 ## Objetivo
 
-Consolidar o aceite final da implantacao com criterios objetivos de prontidao tecnica e operacional.
+Consolidar o aceite final da implantação com critérios objetivos de prontidão técnica e operacional.
 
 ## Repositorio
 
 - [ ] branch de deploy definida.
 - [ ] `Dockerfile` validado.
 - [ ] `.dockerignore` revisado.
-- [ ] segredos fora do codigo.
+- [ ] segredos fora do código.
 
 ## Servidor e acesso
 
@@ -27,30 +27,30 @@ Consolidar o aceite final da implantacao com criterios objetivos de prontidao te
 ## Coolify
 
 - [ ] projeto e ambiente criados.
-- [ ] aplicacao cadastrada.
+- [ ] aplicação cadastrada.
 - [ ] branch, `Dockerfile` e porta interna corretos.
 
 ## Dominio e DNS
 
-- [ ] dominio cadastrado no Coolify.
+- [ ] domínio cadastrado no Coolify.
 - [ ] DNS apontando para o IP correto.
-- [ ] propagacao validada.
+- [ ] propagação validada.
 
 ## Publicacao
 
-- [ ] primeiro deploy concluido.
-- [ ] container em execucao.
+- [ ] primeiro deploy concluído.
+- [ ] container em execução.
 - [ ] health check respondendo.
 - [ ] HTTPS ativo.
-- [ ] aplicacao acessivel em producao.
+- [ ] aplicação acessível em produção.
 
 ## Operacao continua
 
-- [ ] fluxo de atualizacao definido.
-- [ ] responsavel pela validacao pos-deploy definido.
+- [ ] fluxo de atualização definido.
+- [ ] responsável pela validação pós-deploy definido.
 - [ ] troubleshooting documentado.
-- [ ] boas praticas alinhadas com a equipe.
+- [ ] boas práticas alinhadas com a equipe.
 
 ## Criterio de encerramento
 
-Considere a implantacao encerrada somente quando todos os itens estiverem concluidos e houver evidencias de validacao registradas.
+Considere a implantação encerrada somente quando todos os itens estiverem concluídos e houver evidências de validação registradas.
