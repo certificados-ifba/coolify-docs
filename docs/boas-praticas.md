@@ -57,8 +57,4 @@ sudo systemctl restart sshd || sudo systemctl restart ssh
 - registre mudancas em runbook e ticket de mudanca
 - defina procedimento de revogacao imediata em incidente
 
-## Referencia visual
 
-A Figura 3 resume o ciclo de vida seguro de chaves SSH.
-
-![Figura 3 - Ciclo de vida de chaves SSH](/img/figura-3-ciclo-chave-ssh.png)

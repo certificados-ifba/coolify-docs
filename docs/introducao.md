@@ -44,8 +44,3 @@ Este material NAO cobre:
 8. Revisar [Boas praticas](./boas-praticas.md)
 9. Resolver falhas com [Troubleshooting](./troubleshooting.md)
 
-## Referencia visual
-
-A Figura 1 representa o fluxo de autenticacao desta documentacao.
-
-![Figura 1 - Fluxo de autenticacao SSH e Coolify](/img/figura-1-fluxo-ssh-coolify.png)

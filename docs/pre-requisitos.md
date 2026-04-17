@@ -49,8 +49,4 @@ nc -zv SEU_SERVIDOR_OU_IP 22
 - [ ] URL SSH do repositorio remoto identificada
 - [ ] janela de manutencao aprovada (se ambiente produtivo)
 
-## Referencia visual
 
-A Figura 2 ilustra os pontos que devem estar prontos antes da configuracao.
-
-![Figura 2 - Checklist de preparo do ambiente](/img/figura-2-checklist-preparacao.png)

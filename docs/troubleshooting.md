@@ -112,8 +112,3 @@ Comando de validacao de sintaxe:
 sudo sshd -t
 ```
 
-## Referencia visual
-
-A Figura 4 organiza o fluxo de diagnostico por sintoma.
-
-![Figura 4 - Fluxo de troubleshooting SSH e Coolify](/img/figura-4-fluxo-troubleshooting.png)
