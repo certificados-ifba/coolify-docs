@@ -64,6 +64,8 @@ Transformar a implantação em rotina previsível, com segurança mínima e baix
 - armazene segredos somente no Coolify ou em cofre apropriado.
 - não versione credenciais no GitHub.
 - revise portas e serviços expostos no host.
+- para segredos usados apenas durante o build da imagem (tokens de pacote privado, chaves de build), use a opção **Use Docker Build Secrets** do Coolify em vez de variáveis de build comuns — o valor não fica gravado nas camadas da imagem nem aparece em `docker history`.
+- para repositórios privados, prefira GitHub App (acesso revogável e auditável pela organização) ou Deploy Key com escopo restrito a um único repositório; evite usar credenciais pessoais de longa duração.
 
 ## Documentacao viva
 

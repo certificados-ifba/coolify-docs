@@ -27,15 +27,20 @@ Ativar acesso seguro com certificado válido e garantir que o tráfego externo s
 
 ## Como a emissao funciona
 
-Em configurações comuns, o Coolify e o proxy associado tentam emitir automaticamente o certificado após:
+Quando o domínio é cadastrado com o prefixo `https://` (ver [Configuração de domínio](./configuracao-de-dominio.md)), o Coolify configura automaticamente o proxy reverso (Traefik ou Caddy) e solicita o certificado ao Let's Encrypt, sem passo manual adicional. Isso depende de:
 
-- domínio cadastrado.
+- domínio cadastrado com `https://`.
 - DNS apontando para o servidor.
 - portas `80` e `443` disponíveis.
 
+## Renovacao e fallback
+
+- os certificados emitidos pelo Let's Encrypt são válidos por 90 dias; o Coolify renova automaticamente antes do vencimento.
+- se a emissão pelo Let's Encrypt falhar (por exemplo, DNS ainda não propagado), o proxy usa um certificado autoassinado temporário para manter a aplicação acessível. Nesse caso o site carrega, mas o navegador exibe alerta de certificado até a emissão real ser concluída.
+
 ## Dependencias para funcionar
 
-- domínio válido.
+- domínio válido, cadastrado com protocolo `https://`.
 - DNS propagado.
 - proxy do Coolify em execução.
 - aplicação registrada corretamente.
@@ -43,7 +48,7 @@ Em configurações comuns, o Coolify e o proxy associado tentam emitir automatic
 ## Validacoes necessarias
 
 - acessar a URL por HTTPS.
-- conferir se o navegador não exibe alerta de certificado.
+- conferir se o navegador não exibe alerta de certificado (alerta indica fallback autoassinado, não falha definitiva).
 - validar se há redirecionamento adequado de HTTP para HTTPS.
 
 ## Falhas comuns
@@ -52,6 +57,11 @@ Em configurações comuns, o Coolify e o proxy associado tentam emitir automatic
 - porta `80` bloqueada.
 - tentativa de emissão antes da propagação do DNS.
 - configuração salva sem redeploy.
+- domínio cadastrado sem o prefixo `https://`, o que faz o Coolify não tentar emitir certificado algum.
+
+## Verificacao de DNS usada pelo Coolify
+
+Por padrão, o Coolify valida a propagação do domínio consultando o resolvedor público `1.1.1.1` (Cloudflare). Em redes com DNS interno ou split-horizon, essa checagem pode acusar falso negativo mesmo com o registro já propagado; o servidor de checagem pode ser alterado em **Settings** no painel.
 
 ## Critério de aceite
 

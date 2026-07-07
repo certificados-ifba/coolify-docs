@@ -19,6 +19,14 @@ Garantir que o repositório tenha branch, arquivos e convenções aptos para o p
 - README ou documentação de apoio indicando como executar a aplicação.
 - Permissões e acessos adequados no repositório.
 
+## Como o Coolify acessa o repositorio
+
+Existem três formas de conexão, e a escolha depende da visibilidade do repositório:
+
+- **Repositório público**: o Coolify clona direto pela URL, sem credencial.
+- **GitHub App**: instalada na conta ou organização do GitHub, cobre repositórios públicos e privados e é o método recomendado para uso continuado (facilita atualização de permissões e múltiplos repositórios).
+- **Deploy Key**: chave SSH somente leitura vinculada a um único repositório privado. Use quando quiser conceder acesso restrito a um repositório específico, sem instalar a GitHub App inteira na organização.
+
 ## Itens obrigatórios
 
 - branch principal definida e documentada.
@@ -26,7 +34,7 @@ Garantir que o repositório tenha branch, arquivos e convenções aptos para o p
 - `.gitignore` atualizado.
 - variáveis sensíveis fora do código.
 - caminho do build conhecido.
-- permissão de leitura para o Coolify no repo.
+- método de acesso do Coolify ao repositório definido (público, GitHub App ou Deploy Key).
 
 ## Passos recomendados
 

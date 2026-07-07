@@ -57,6 +57,11 @@ nslookup app.exemplo.com
 - confirme o IP do servidor antes de publicar.
 - entenda o TTL usado pelo provedor DNS.
 - não dependa de HTTPS antes de o DNS apontar corretamente.
+- domínios com caracteres não-ASCII (acentos, ç, ã, ü) precisam ser convertidos para punycode no provedor DNS — por exemplo, `são-paulo.exemplo.com` vira `xn--so-paulo-vqb.exemplo.com`. A maioria dos provedores faz essa conversão automaticamente, mas vale confirmar se o registro foi criado corretamente.
+
+## Verificacao usada pelo Coolify
+
+O Coolify não confia apenas no seu resolvedor local: por padrão ele valida a propagação consultando o servidor público `1.1.1.1` (Cloudflare). Se a rede usa DNS interno ou split-horizon, a propagação pode já estar correta externamente, mas o Coolify continuar reportando erro até você trocar o servidor de checagem em **Settings** no painel.
 
 ## Checklist da etapa
 
@@ -70,3 +75,4 @@ nslookup app.exemplo.com
 - TTL alto atrasando validação e gerando diagnóstico incorreto.
 - registros duplicados para o mesmo host.
 - apontar para IP antigo do servidor.
+- confundir DNS interno já propagado com falha real, quando na verdade o Coolify está validando contra `1.1.1.1`.

@@ -26,13 +26,45 @@ Garantir que o servidor aceite autenticação por chave pública, que o serviço
 A chave SSH não deve ter senha nem depender de 2FA para o fluxo automatizado do Coolify.
 :::
 
+## Sobre este fluxo manual
+
+O script de instalação do Coolify já oferece uma configuração semi-automática do SSH ao instalar a plataforma. Esta página cobre o fluxo manual, usado quando o Coolify já está instalado e o host precisa ser preparado ou revisado depois — é o cenário deste projeto.
+
 ## Passos
 
 ### 1. Instale o OpenSSH
 
+Use o comando correspondente à distribuição do host:
+
 ```bash
+# Debian, Ubuntu, PopOS
 apt update && apt install -y openssh-server
 systemctl enable --now ssh
+```
+
+```bash
+# CentOS, RHEL, Rocky, Fedora
+dnf install -y openssh-server
+systemctl enable --now sshd
+```
+
+```bash
+# SLES, openSUSE
+zypper install -y openssh
+systemctl enable --now sshd
+```
+
+```bash
+# Arch Linux
+pacman -Sy --noconfirm openssh
+systemctl enable --now sshd
+```
+
+```bash
+# Alpine
+apk add openssh
+rc-update add sshd
+rc-service sshd start
 ```
 
 ### 2. Ajuste a configuração do SSH

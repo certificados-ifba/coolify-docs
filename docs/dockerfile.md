@@ -62,6 +62,18 @@ Substitua a porta interna conforme a sua aplicação.
 - o processo principal não encerra imediatamente.
 - a porta interna está clara.
 - o build não depende de arquivos ausentes no repositório.
+- se o health check for feito pela interface do Coolify (não pelo `HEALTHCHECK` do Dockerfile), a imagem final precisa ter `curl` ou `wget` instalado.
+
+## Variaveis de build e segredos
+
+O Coolify injeta variáveis de ambiente e argumentos de build automaticamente durante o `docker build`. Alguns pontos relevantes:
+
+- a variável `SOURCE_COMMIT` (hash do commit implantado) fica desabilitada por padrão para não invalidar o cache de build da imagem; habilite-a apenas se o `Dockerfile` realmente precisar do hash do commit.
+- para segredos usados apenas durante o build (tokens de build, chaves de pacote privado), prefira a opção **Use Docker Build Secrets** do Coolify em vez de declarar o valor como `ARG`/`ENV` comum — com Docker Build Secrets (BuildKit) o valor nunca fica gravado nas camadas da imagem nem aparece em `docker history`.
+
+## HEALTHCHECK no Dockerfile
+
+Se o `Dockerfile` define a instrução `HEALTHCHECK`, ela tem precedência sobre qualquer health check configurado manualmente na interface do Coolify. Ver [Health check e disponibilidade](./health-check-e-disponibilidade.md) para os detalhes de precedência e comportamento do proxy quando o check falha.
 
 ## Validacao operacional
 

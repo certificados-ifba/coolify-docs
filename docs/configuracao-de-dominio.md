@@ -38,12 +38,27 @@ Exemplos:
 - `docs.exemplo.com`.
 - `sistema.hom.exemplo.com`.
 
+## Sintaxe exigida pelo Coolify
+
+O campo de domínio da aplicação no Coolify não aceita apenas o nome do host: ele espera uma URL completa, com protocolo. O formato mínimo é:
+
+```text
+https://app.exemplo.com
+```
+
+Regras importantes desse campo:
+
+- o protocolo é obrigatório (`https://` para emissão automática de certificado, `http://` quando não houver HTTPS).
+- múltiplos domínios para a mesma aplicação são separados por vírgula: `https://app.exemplo.com,https://api.exemplo.com`.
+- é possível informar uma porta específica de proxy logo após o host: `https://app.exemplo.com:3000`.
+- quando houver porta e caminho ao mesmo tempo, a porta vem antes do caminho: `https://app.exemplo.com:3000/api` (nunca `/api:3000`).
+- é possível rotear caminhos diferentes para aplicações diferentes no mesmo domínio (`https://exemplo.com/api`, `https://exemplo.com/admin`); o Coolify prioriza o caminho mais específico, mas isso só funciona enquanto a aplicação responsável pelo caminho estiver saudável — se cair, o Coolify recai para o roteamento do domínio raiz.
+
 ## Configuração no Coolify
 
 Ao cadastrar o dominio no painel:
 
-- use o domínio completo.
-- prefira incluir o protocolo esperado.
+- use a URL completa, com protocolo, no formato acima.
 - defina a estratégia entre `www` e não `www`.
 - confirme se o subdomínio corresponde ao ambiente correto.
 
@@ -53,6 +68,7 @@ Ao cadastrar o dominio no painel:
 - não misture domínio de produção com ambiente de teste.
 - alinhe o `baseUrl` da aplicação se ela depender disso.
 - não publique DNS sem saber qual IP do servidor receberá tráfego.
+- bancos de dados não suportam domínio próprio no Coolify; essa configuração é exclusiva de aplicações e serviços.
 
 ## Passos
 
@@ -73,3 +89,5 @@ Ao cadastrar o dominio no painel:
 - cadastrar domínio errado no app e corrigir apenas no DNS.
 - alternar entre www e não-www sem definir redirecionamento.
 - usar o mesmo domínio para homologação e produção.
+- esquecer o protocolo (`https://`) no campo de domínio do Coolify.
+- colocar o caminho antes da porta na mesma URL (`/api:3000` em vez de `:3000/api`).
